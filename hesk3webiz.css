@@ -2,7 +2,7 @@ aside.main-menu {
 	background-color: #125E15 !important;
 }
 
-.bulk-actions button {
+button {
 	background-color: #2CA04C !important;
 }
 
@@ -10,6 +10,6 @@ aside.main-menu {
 	background-color: #E8F2EB !important;
 }
 
-.header__right {
+.header__right .ripple--container {
 	background-color: #2C70A2 !important;
 }
