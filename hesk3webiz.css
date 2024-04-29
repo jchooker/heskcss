@@ -1,12 +1,15 @@
 aside.main-menu {
-	background-color: #125E15;
+	background-color: #125E15 !important;
 }
 
 .bulk-actions button {
-	background-color: #2CA04C;
+	background-color: #2CA04C !important;
 }
 
 .main__content {
-	background-color: #E8F2EB;
+	background-color: #E8F2EB !important;
 }
 
+.header__right {
+	background-color: #2C70A2 !important;
+}
