@@ -3,7 +3,7 @@ aside.main-menu {
 }
 
 aside.main-menu svg, aside.main-menu .navbar__logo {
-		filter: brightness(1.8);
+	filter: brightness(140%);
 }
 
 button {
