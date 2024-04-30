@@ -12,12 +12,12 @@ aside.main-menu {
 }
 
 .navbar__logo {
-	content: "IT Help Desk";
-	color: rgba(255,255,255,0.85);
+	display: none;
 }
 
 .navbar__logo::before {
-	display: none;
+	content: "IT Help Desk";
+	color: rgba(255,255,255,0.85);
 }
 
 button {
