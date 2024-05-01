@@ -1,6 +1,10 @@
+:root {
+	--white85: rgba(255,255,255,0.85);
+}
+
 aside.main-menu {
 	background-color: #595959;
-	color: rgba(255,255,255,0.85);
+	color: var(--white85);
 }
 
 /* aside.main-menu svg, aside.main-menu .navbar__logo { */
@@ -8,13 +12,13 @@ aside.main-menu {
 /* } */
 
 .navbar__header {
-	color: rgba(255,255,255,0.85);
+	color: var(--white85);
 }
 
 .navbar__logo {
 	visibility: hidden;
 	position: relative;
-	color: rgba(255,255,255,0.85);
+	color: var(--white85);
 }
 
 .navbar__logo::before {
@@ -24,7 +28,16 @@ aside.main-menu {
 	top: 0;
 	left: 0;
 	transform: scale(0.85);
-	color: rgba(255,255,255,0.85);
+	color: var(--white85);
+	width: 130%;
+}
+
+svg.icon.icon-menu {
+	color: var(--white85);
+}
+
+svg.icon.icon-menu:hover {
+	color: #94DAFF;
 }
 
 /* button { */
@@ -50,4 +63,9 @@ aside.main-menu {
 	content: "Create New Ticket";
 	top: 20%;
 	left: 12%;
+}
+
+section.params--block.params ul {
+	height: 30vh;
+	overflow: scroll;
 }
