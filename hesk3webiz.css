@@ -69,3 +69,12 @@ section.params--block.params ul {
 	height: 30vh;
 	overflow: scroll;
 }
+
+.table thead {
+	height: 34px;
+}
+
+.table thead th.table__first_th, .table thead th, 
+.table tbody tr .table__first_td, table tbody td  {
+	padding: 6px 6px;
+}
