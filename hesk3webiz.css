@@ -16,21 +16,21 @@ aside.main-menu {
 }
 
 .navbar__logo {
-	visibility: hidden;
-	position: relative;
+	/* visibility: hidden; */
+	/* position: relative; */
 	color: var(--white85);
 }
 
-.navbar__logo::before {
-	visibility: visible;
-	content: "IT Help Desk";
-	position: absolute;
-	top: 0;
-	left: 0;
-	transform: scale(0.85);
-	color: var(--white85);
-	width: 130%;
-}
+/* .navbar__logo::before { */
+	/* visibility: visible; */
+	/* content: "IT Help Desk"; */
+	/* position: absolute; */
+	/* top: 0; */
+	/* left: 0; */
+	/* transform: scale(0.85); */
+	/* color: var(--white85); */
+	/* width: 130%; */
+/* } */
 
 svg.icon.icon-menu {
 	color: var(--white85);
