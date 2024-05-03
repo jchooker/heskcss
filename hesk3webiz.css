@@ -73,8 +73,8 @@ svg.icon.icon-menu:hover {
 
 .profile__item.profile__user.active .btn.btn-border::before {
 	content: "View Profile";
-	top: 20%;
-	left: 12%;
+	top: 25%;
+	left: 25%;
 }
 
 section.params--block.params ul {
