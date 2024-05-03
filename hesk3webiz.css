@@ -74,12 +74,12 @@ section.params--block.params ul {
 	height: 34px;
 }
 
-.table.sindu-table thead tr td:nth-child(12),
-.table.sindu-table tbody tr td:nth-child(12),
-.table.sindu-table thead tr td:nth-child(13),
-.table.sindu-table tbody tr td:nth-child(13) {
-	display: none;
-} 
+/* .table.sindu-table thead tr td:nth-child(12), */
+/* .table.sindu-table tbody tr td:nth-child(12), */
+/* .table.sindu-table thead tr td:nth-child(13), */
+/* .table.sindu-table tbody tr td:nth-child(13) { */
+	/* display: none; */
+/* }  */
 
 /* .table thead th.table__first_th, .table thead th,  */
 /* .table tbody tr .table__first_td, table tbody td  { */
