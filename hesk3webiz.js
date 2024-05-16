@@ -6,23 +6,25 @@
      const hasTextElement3 = document.querySelector('#select_category');
      console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
      console.log("DOM Loaded");
-     if (hasTextElement1) {
-         hasTextElement1.addEventListener('click', function() {
-            console.log('scenario 1 click');
-             privateCategoryFontColor();
-         })
+     const targetSel = '.table-wrap';
+    //  if (hasTextElement1) {
+    //      hasTextElement1.addEventListener('click', function() {
+    //         console.log('scenario 1 click');
+    //          privateCategoryFontColor();
+    //      })
          
-         hasTextElement1.addEventListener('change', function() {
-            console.log('scenario 2 change');
-             privateCategoryFontColor();
-         })
-     }
-     if (hasTextElement3) {
-        hasTextElement3.addEventListener('change', function() {
-            console.log('scenario 3 change');
-            privateCategoryFontColor();
-        })
-     }
+    //      hasTextElement1.addEventListener('change', function() {
+    //         console.log('scenario 2 change');
+    //          privateCategoryFontColor();
+    //      })
+    //  }
+    //  if (hasTextElement3) {
+    //     hasTextElement3.addEventListener('change', function() {
+    //         console.log('scenario 3 change');
+    //         privateCategoryFontColor();
+    //     })
+    //  }
+    longLooker(targetSel, '.has-items', privateCategoryFontColor());
  });
 
 var strsToMatch = {
@@ -85,5 +87,30 @@ function privateCategoryFontColor() {
     //} //div match for selectize selected item, if private
 
     //for (phrase in) //'div button' match on next pg for match (label of 'Category:')     <script src="src/script.js"></script>
+
+}
+
+function longLooker(targetSelector, selector, callback) {
+    const target = document.querySelector(targetSelector);
+    if (!target) {
+        console.warn(`The target element ${targetSelector} was not found in the DOM!`)
+        return;
+    }
+    const observer =
+    new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === 1 && node.matches(selector)) {
+                    callback(node);
+                    observer.disconnect();
+                }
+            });
+        });
+    });
+    
+    observer.observe(target, {
+        childList: true,
+        subtree: true
+    });
 
 }
