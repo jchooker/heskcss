@@ -2,6 +2,7 @@
      
      const hasTextElement1 = document.querySelector('.has-item'); //<--selector only works for purposes of clicking boundaries
      const hasTextElement2 = document.querySelector('#cc-btn');
+     const hasTextElement3 = document.querySelector('#select_category');
      console.log("DOM Loaded");
      if (hasTextElement1) {
          hasTextElement1.addEventListener('click', function() {
@@ -11,6 +12,11 @@
          hasTextElement1.addEventListener('change', function() {
              privateCategoryFontColor();
          })
+     }
+     if (hasTextElement3) {
+        hasTextElement3.addEventListener('change', function() {
+            privateCategoryFontColor();
+        })
      }
  });
 
