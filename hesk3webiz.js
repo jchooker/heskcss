@@ -1,44 +1,48 @@
  document.addEventListener('DOMContentLoaded', function() {
      
-     const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
+     //const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
      //console.log('"' + hasTextElement1 + '" was the result of selecting the class has-items');
      //const hasTextElement2 = document.querySelector('#cc-btn');
-     const hasTextElement3 = document.querySelector('#select_category');
+     //const hasTextElement3 = document.querySelector('#select_category');
      //console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
      console.log("DOM Loaded");
      //const targetSel = '.table-wrap';
-     const selectElement = document.querySelector('.selectize-control input');
-
-     if (selectElement && selectElement.selectize) {
-        const selectizeControl = selectElement.selectize;
-
-        selectizeControl.on('dropdown_open', () => {
-            console.log('Linked up w/ selectize');
-        })
-
-        // selectElement.addEventListener('click', applyCustomStyles);
-        // selectElement.addEventListener('keyup', applyCustomStyles);
-
-        // function applyCustomStyles() {
-        //     var strsToMatch = {
-        //         "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
-        //         "complete":["Other", "359 Request", "DBA"]
-        //     }
-        //     const newColor = '#FF5F1F';
-        //     setTimeout(() => {
-        //         const options = document.querySelectorAll('.selectize-dropdown-content .option');
-
-        //         options.forEach((option, index) => {
-        //             if (exactTextMatch(option, strsToMatch.complete)) {
-        //                 option.style.color = newColor;
-        //             } else if (partialTextMatch(option, strsToMatch.partial)) {
-        //                 option.style.color = newColor;
-        //             }
-        //         });
-        //     }, 10);
-        // }
-
-     }
+     const checkSelectizeAvailability = () => {
+         const selectElement = document.querySelector('select');
+    
+         if (selectElement && selectElement.selectize) {
+            const selectizeControl = selectElement.selectize;
+    
+            selectizeControl.on('dropdown_open', () => {
+                console.log('Linked up w/ selectize');
+            });
+    
+            // selectElement.addEventListener('click', applyCustomStyles);
+            // selectElement.addEventListener('keyup', applyCustomStyles);
+    
+            // function applyCustomStyles() {
+            //     var strsToMatch = {
+            //         "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
+            //         "complete":["Other", "359 Request", "DBA"]
+            //     }
+            //     const newColor = '#FF5F1F';
+            //     setTimeout(() => {
+            //         const options = document.querySelectorAll('.selectize-dropdown-content .option');
+    
+            //         options.forEach((option, index) => {
+            //             if (exactTextMatch(option, strsToMatch.complete)) {
+            //                 option.style.color = newColor;
+            //             } else if (partialTextMatch(option, strsToMatch.partial)) {
+            //                 option.style.color = newColor;
+            //             }
+            //         });
+            //     }, 10);
+            // }
+    
+         } else {
+            setTimeout(checkSelectizeAvailability, 100);
+         }
+     };
     //  if (hasTextElement1) {
     //      hasTextElement1.addEventListener('click', function() {
     //         console.log('scenario 1 click');
@@ -63,6 +67,7 @@
     // } else {
     //     console.warn(`Element for '${targetSel}' not found!`);
     // }
+    checkSelectizeAvailability();
  });
 
 var strsToMatch = {
