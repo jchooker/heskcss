@@ -24,7 +24,9 @@
     //         privateCategoryFontColor();
     //     })
     //  }
-    longLooker(targetSel, hasTextElement3, privateCategoryFontColor);
+    longLooker(targetSel, hasTextElement3, element => {
+        console.log(`New element added: `, element);
+    });
  });
 
 var strsToMatch = {
@@ -107,11 +109,11 @@ function longLooker(targetSelector, element, callback) {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
                 if (node === element) {
-                    console.log(`Found target item with selector "${element}"!`);
+                    //console.log(`Found target item with selector "${element}"!`);
                     callback(node);
                     observer.disconnect();
                 }
-                else console.log(`Never found target item with selector "${element}"!`)
+                //else console.log(`Never found target item with selector "${element}"!`)
             });
         });
     });
