@@ -1,6 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
+//     privateCategoryFontColor();
+// });
+const hasTextElement1 = document.querySelector('.has-item'); //<--selector only works for purposes of clicking boundaries
+const hasTextElement2 = document.querySelector('#cc-btn');
+
+hasTextElement1.addEventListener('click', function() {
     privateCategoryFontColor();
-});
+})
+
+hasTextElement1.addEventListener('change', function() {
+    privateCategoryFontColor();
+})
 
 var strsToMatch = {
     "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
@@ -33,12 +43,12 @@ function privateCategoryFontColor() {
     const newColor = '#FF5F1F';
     for (let item of strsToMatch.partial) {
         var matchingElem = partialTextMatch(selPrefix1, item);
-        if (matchingElem) {
+        if (matchingElem && matchingElem.style.color != newColor) {
             matchingElem.style.color = newColor;
         }
         else {
             matchingElem = partialTextMatch(selPrefix2, item);
-            if (matchingElem) {
+            if (matchingElem && matchingElem.style.color != newColor) {
                 matchingElem.style.color = newColor;
             }
         }
@@ -46,12 +56,12 @@ function privateCategoryFontColor() {
     
     for (let item of strsToMatch.complete) {
         var matchingElem = exactTextMatch(selPrefix1, item);
-        if (matchingElem) {
+        if (matchingElem && matchingElem.style.color != newColor) {
             matchingElem.style.color = newColor;
         }
         else {
             matchingElem = exactTextMatch(selPrefix2, item);
-            if (matchingElem) {
+            if (matchingElem && matchingElem.style.color != newColor) {
                 matchingElem.stle.color = newColor;
             }
         }

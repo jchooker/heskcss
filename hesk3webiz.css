@@ -7,30 +7,13 @@ aside.main-menu {
 	color: var(--white85);
 }
 
-/* aside.main-menu svg, aside.main-menu .navbar__logo { */
-	/* filter: brightness(140%); */
-/* } */
-
 .navbar__header {
 	color: var(--white85);
 }
 
 .navbar__logo {
-	/* visibility: hidden; */
-	/* position: relative; */
 	color: var(--white85);
 }
-
-/* .navbar__logo::before { */
-	/* visibility: visible; */
-	/* content: "IT Help Desk"; */
-	/* position: absolute; */
-	/* top: 0; */
-	/* left: 0; */
-	/* transform: scale(0.85); */
-	/* color: var(--white85); */
-	/* width: 130%; */
-/* } */
 
 svg.icon.icon-menu {
 	color: var(--white85);
@@ -39,10 +22,6 @@ svg.icon.icon-menu {
 svg.icon.icon-menu:hover {
 	color: #94DAFF;
 }
-
-/* button { */
-	/* background-color: #A3A3A3; */
-/* } */
 
 .main__content {
 	background-color: #F0F0F0;
@@ -53,7 +32,6 @@ svg.icon.icon-menu:hover {
 }
 
 .header__right .btn.btn-full {
-	/*visibility: hidden;*/
 	position: relative;
 	background-color: #A3A3A3;
 	color: #F2F2F2;
@@ -91,8 +69,7 @@ section.params--block.params ul {
 	padding: 5px 5px;
 }
 
-
-/* .table thead th.table__first_th, .table thead th,  */
-/* .table tbody tr .table__first_td, table tbody td  { */
-	/* padding: 6px 6px; */
-/* } button under username at top left should say View Profile*/
+/*replies extended past box bounds 05/16/2024*/
+.note__description p {
+	word-wrap: break-word;
+}
