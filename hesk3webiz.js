@@ -24,9 +24,13 @@
     //         privateCategoryFontColor();
     //     })
     //  }
-    longLooker(targetSel, hasTextElement3, element => {
-        console.log(`New element added: `, element);
-    });
+    if (targetSel) {
+        longLooker(targetSel, hasTextElement3, element => {
+            console.log(`New element added: `, element);
+        });
+    } else {
+        console.warn(`Element for '${targetSel}' not found!`);
+    }
  });
 
 var strsToMatch = {
