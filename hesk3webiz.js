@@ -24,7 +24,7 @@
     //         privateCategoryFontColor();
     //     })
     //  }
-    longLooker(targetSel, hasTextElement3, privateCategoryFontColor());
+    longLooker(targetSel, hasTextElement3, privateCategoryFontColor);
  });
 
 var strsToMatch = {
