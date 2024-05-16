@@ -1,16 +1,17 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     privateCategoryFontColor();
-// });
-const hasTextElement1 = document.querySelector('.has-item'); //<--selector only works for purposes of clicking boundaries
-const hasTextElement2 = document.querySelector('#cc-btn');
-
-hasTextElement1.addEventListener('click', function() {
-    privateCategoryFontColor();
-})
-
-hasTextElement1.addEventListener('change', function() {
-    privateCategoryFontColor();
-})
+ document.addEventListener('DOMContentLoaded', function() {
+     
+     const hasTextElement1 = document.querySelector('.has-item'); //<--selector only works for purposes of clicking boundaries
+     const hasTextElement2 = document.querySelector('#cc-btn');
+     if (hasTextElement1) {
+         hasTextElement1.addEventListener('click', function() {
+             privateCategoryFontColor();
+         })
+         
+         hasTextElement1.addEventListener('change', function() {
+             privateCategoryFontColor();
+         })
+     }
+ });
 
 var strsToMatch = {
     "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
