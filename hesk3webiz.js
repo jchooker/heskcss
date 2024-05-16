@@ -101,6 +101,7 @@ function longLooker(targetSelector, selector, callback) {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
                 if (node.nodeType === 1 && node.matches(selector)) {
+                    console.log(`Found target item in selector "${selector}"!`);
                     callback(node);
                     observer.disconnect();
                 }
