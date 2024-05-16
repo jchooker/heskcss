@@ -1,6 +1,6 @@
  document.addEventListener('DOMContentLoaded', function() {
      
-     const hasTextElement1 = document.querySelector('.has-item'); //<--selector only works for purposes of clicking boundaries
+     const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
      const hasTextElement2 = document.querySelector('#cc-btn');
      const hasTextElement3 = document.querySelector('#select_category');
      console.log("DOM Loaded");
