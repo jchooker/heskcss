@@ -107,11 +107,11 @@ function longLooker(targetSelector, element, callback) {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
                 if (node === element) {
-                    console.log(`Found target item with selector "${selector}"!`);
+                    console.log(`Found target item with selector "${element}"!`);
                     callback(node);
                     observer.disconnect();
                 }
-                else console.log(`Never found target item with selector "${selector}"!`)
+                else console.log(`Never found target item with selector "${element}"!`)
             });
         });
     });
