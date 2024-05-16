@@ -2,6 +2,7 @@
      
      const hasTextElement1 = document.querySelector('.has-item'); //<--selector only works for purposes of clicking boundaries
      const hasTextElement2 = document.querySelector('#cc-btn');
+     console.log("DOM Loaded");
      if (hasTextElement1) {
          hasTextElement1.addEventListener('click', function() {
              privateCategoryFontColor();
