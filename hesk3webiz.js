@@ -7,6 +7,34 @@
      console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
      console.log("DOM Loaded");
      const targetSel = '.table-wrap';
+     const selectElement = document.querySelector('.selectize-control input');
+
+     if (selectElement) {
+        const selectizeControl = selectElement.selectize;
+
+        selectElement.addEventListener('click', applyCustomStyles);
+        selectElement.addEventListener('keyup', applyCustomStyles);
+
+        function applyCustomStyles() {
+            var strsToMatch = {
+                "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
+                "complete":["Other", "359 Request", "DBA"]
+            }
+            const newColor = '#FF5F1F';
+            setTimeout(() => {
+                const options = document.querySelectorAll('.selectize-dropdown-content .option');
+
+                options.forEach((option, index) => {
+                    if (exactTextMatch(option, strsToMatch.complete)) {
+                        option.style.color = newColor;
+                    } else if (partialTextMatch(option, strsToMatch.partial)) {
+                        option.style.color = newColor;
+                    }
+                });
+            }, 10);
+        }
+
+     }
     //  if (hasTextElement1) {
     //      hasTextElement1.addEventListener('click', function() {
     //         console.log('scenario 1 click');
@@ -24,13 +52,13 @@
     //         privateCategoryFontColor();
     //     })
     //  }
-    if (targetSel) {
-        longLooker(targetSel, hasTextElement3, element => {
-            console.log(`New element added: `, element);
-        });
-    } else {
-        console.warn(`Element for '${targetSel}' not found!`);
-    }
+    // if (targetSel) {
+    //     longLooker(targetSel, hasTextElement3, element => {
+    //         console.log(`New element added: `, element);
+    //     });
+    // } else {
+    //     console.warn(`Element for '${targetSel}' not found!`);
+    // }
  });
 
 var strsToMatch = {
@@ -38,23 +66,46 @@ var strsToMatch = {
     "complete":["Other", "359 Request", "DBA"]
 }
 
-function exactTextMatch(tag, searchText) {
-    const elements = document.getElementsByTagName(tag);
-    for (let element of elements) {
-        if (element.textContent.trim() === searchText) {
-            return element;
+// function exactTextMatch(tag, searchText) {
+//     const elements = document.getElementsByTagName(tag);
+//     for (let element of elements) {
+//         if (element.textContent.trim() === searchText) {
+//             return element;
+//         }
+//     }
+//     return null;
+// }
+
+// function partialTextMatch(tag, searchText) {
+//     const elements = document.querySelectorAll(tag);
+//     for (let element of elements) {
+//         if (element.textContent.includes(searchText)) {
+//             return element;
+//         }
+//     }
+//     return null;
+// }
+function exactTextMatch(element, searchText) {
+    //const elements = document.getElementsByTagName(tag);
+    // for (let element of elements) {
+        for (let item of searchText) {
+            if (element.textContent.trim() === item) {
+                return element;
+            }
         }
-    }
+    // }
     return null;
 }
 
-function partialTextMatch(tag, searchText) {
-    const elements = document.querySelectorAll(tag);
-    for (let element of elements) {
-        if (element.textContent.includes(searchText)) {
-            return element;
+function partialTextMatch(element, searchText) {
+    //const elements = document.querySelectorAll(tag);
+    // for (let element of elements) {
+        for (let item of searchText) {
+            if (element.textContent.includes(item)) {
+                return element;
+            }
         }
-    }
+    // }
     return null;
 }
 
