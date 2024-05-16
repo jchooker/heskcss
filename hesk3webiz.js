@@ -6,15 +6,18 @@
      console.log("DOM Loaded");
      if (hasTextElement1) {
          hasTextElement1.addEventListener('click', function() {
+            console.log('scenario 1 click');
              privateCategoryFontColor();
          })
          
          hasTextElement1.addEventListener('change', function() {
+            console.log('scenario 2 change');
              privateCategoryFontColor();
          })
      }
      if (hasTextElement3) {
         hasTextElement3.addEventListener('change', function() {
+            console.log('scenario 3 change');
             privateCategoryFontColor();
         })
      }
