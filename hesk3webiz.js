@@ -1,10 +1,10 @@
  document.addEventListener('DOMContentLoaded', function() {
      
      const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
-     console.log('"' + hasTextElement1 + '" was the result of selecting the class has-items');
+     //console.log('"' + hasTextElement1 + '" was the result of selecting the class has-items');
      //const hasTextElement2 = document.querySelector('#cc-btn');
      const hasTextElement3 = document.querySelector('#select_category');
-     console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
+     //console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
      console.log("DOM Loaded");
      //const targetSel = '.table-wrap';
      const selectElement = document.querySelector('.selectize-control input');
@@ -151,35 +151,35 @@ function privateCategoryFontColor() {
 
 }
 
-function longLooker(targetSelector, element, callback) {
-    const target = document.querySelector(targetSelector);
-    if (!target) {
-        console.warn(`The target element ${targetSelector} was not found in the DOM!`)
-        return;
-    }
+// function longLooker(targetSelector, element, callback) {
+//     const target = document.querySelector(targetSelector);
+//     if (!target) {
+//         console.warn(`The target element ${targetSelector} was not found in the DOM!`)
+//         return;
+//     }
 
-    if (!(element instanceof HTMLElement)) {
-        console.error("The provided 'element' is not a valid HTMLElement.");
-        return;
-    }
+//     if (!(element instanceof HTMLElement)) {
+//         console.error("The provided 'element' is not a valid HTMLElement.");
+//         return;
+//     }
 
-    const observer =
-    new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-                if (node === element) {
-                    //console.log(`Found target item with selector "${element}"!`);
-                    callback(node);
-                    observer.disconnect();
-                }
-                //else console.log(`Never found target item with selector "${element}"!`)
-            });
-        });
-    });
+//     const observer =
+//     new MutationObserver((mutations) => {
+//         mutations.forEach((mutation) => {
+//             mutation.addedNodes.forEach((node) => {
+//                 if (node === element) {
+//                     //console.log(`Found target item with selector "${element}"!`);
+//                     callback(node);
+//                     observer.disconnect();
+//                 }
+//                 //else console.log(`Never found target item with selector "${element}"!`)
+//             });
+//         });
+//     });
     
-    observer.observe(target, {
-        childList: true,
-        subtree: true
-    });
+//     observer.observe(target, {
+//         childList: true,
+//         subtree: true
+//     });
 
-}
+// }
