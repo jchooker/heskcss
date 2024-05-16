@@ -24,7 +24,7 @@
     //         privateCategoryFontColor();
     //     })
     //  }
-    longLooker(targetSel, '.has-items', privateCategoryFontColor());
+    longLooker(targetSel, hasTextElement3, privateCategoryFontColor());
  });
 
 var strsToMatch = {
@@ -90,17 +90,23 @@ function privateCategoryFontColor() {
 
 }
 
-function longLooker(targetSelector, selector, callback) {
+function longLooker(targetSelector, element, callback) {
     const target = document.querySelector(targetSelector);
     if (!target) {
         console.warn(`The target element ${targetSelector} was not found in the DOM!`)
         return;
     }
+
+    if (!(element instanceof HTMLElement)) {
+        console.error("The provided 'element' is not a valid HTMLElement.");
+        return;
+    }
+
     const observer =
     new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1 && node.matches(selector)) {
+                if (node === element) {
                     console.log(`Found target item with selector "${selector}"!`);
                     callback(node);
                     observer.disconnect();
