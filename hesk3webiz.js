@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
      
      //const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
      //console.log('"' + hasTextElement1 + '" was the result of selecting the class has-items');
@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectElement && selectElement.selectize) {
             const selectizeControl = selectElement.selectize;
     
-            selectizeControl.on('initialize', () => {
+            selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
-                privateCategoryFontColor(selText);
+                updateOptionStyles(selectizeControl);
             });
     
             // selectElement.addEventListener('click', applyCustomStyles);
@@ -75,6 +75,27 @@ document.addEventListener('DOMContentLoaded', function() {
     //     console.warn(`Element for '${targetSel}' not found!`);
     // }
     checkSelectizeAvailability();
+    
+    function updateOptionStyles(selectizeControl) {
+        let options = $(selectizeControl.$dropdown_content).find('.option');
+        options.each(function() {
+            let optionElement = $(this);
+            let text = optionElement.text().trim();
+            if (shouldApplyOrangeText(text)) {
+                optionElement.css('color', newColor);
+            }
+        });
+    }
+
+    function shouldApplyOrangeText(text) {
+        for (let item of strsToMatch.complete) {
+            if (text === item) return true;
+        }
+        for (let item of strsToMatch.partial) {
+            if (text.includes(item)) return true;
+        }
+        return false;
+    }
  });
 
 // var strsToMatch = {
