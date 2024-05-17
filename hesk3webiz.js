@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var correctPageCheck = $('h2').filter(() => {
+        console.log(`h2 check outcome: ${$(this).text().trim() === 'Select ticket category'}`);
         return $(this).text().trim() === "Select ticket category";
     }).length > 0;
     if (correctPageCheck) {
