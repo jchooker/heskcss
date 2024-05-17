@@ -30,7 +30,11 @@ $(document).ready(function() {
     
             selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
-                updateOptionStyles(selectizeControl);
+                try {
+                    updateOptionStyles(selectizeControl);
+                } catch (error) {
+                    console.log('error loading styles for options', error);
+                }
             });
 
             selectizeControl.on('change', () => {
