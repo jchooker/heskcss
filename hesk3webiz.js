@@ -3,7 +3,9 @@ $(document).ready(function() {
         return $(this).text().trim() === "Select ticket category";
     }).length > 0;
     if (correctPageCheck) {
+        console.log('Found h2');
         $('button').filter(function() {
+            console.log('found button area for inserting');
            return $(this).text().trim() === "Click to continue";
         }).after(`<p class='smaller-text'><span class='orange-text'>Orange text</span> is used to indicate PRIVATE categories. These categories will have a more limited list of users to whom
         the ticket can be assigned.</p>`);
