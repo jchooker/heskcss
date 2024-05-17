@@ -22,18 +22,18 @@ $(document).ready(function() {
 
     const selText = '#select_category';
     const newColor = '#FF5F1F';
-    const checkSelectizeAvailability = function() {
+    const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
     
         if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
             const selectizeControl = selectElement[0].selectize; //...and here?
     
-            selectizeControl.on('dropdown_open', function() {
+            selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
                 updateOptionStyles(selectizeControl);
             });
 
-            selectizeControl.on('change', function() {
+            selectizeControl.on('change', () => {
                 persistStyleOnSelect(selectizeControl);
             });
     
