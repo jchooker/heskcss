@@ -77,3 +77,7 @@ section.params--block.params ul {
 .orange-text {
 	color: #FF5F1F;
 }
+
+.smaller-text {
+	font-size: 0.3rem;
+}

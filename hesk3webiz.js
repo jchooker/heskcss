@@ -1,12 +1,16 @@
 $(document).ready(function() {
-     
-     //const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
-     //console.log('"' + hasTextElement1 + '" was the result of selecting the class has-items');
-     //const hasTextElement2 = document.querySelector('#cc-btn');
-     //const hasTextElement3 = document.querySelector('#select_category');
-     //console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
+    var correctPageCheck = $('h2').filter(() => {
+        return $(this).text().trim() === "Select ticket category";
+    }).length > 0;
+    if (correctPageCheck) {
+        $('button').filter(function() {
+           return $(this).text().trim() === "Click to continue";
+        }).after(`<p class='smaller-text'><span class='orange-text'>Orange text</span> is used to indicate PRIVATE categories. These categories will have a more limited list of users to whom
+        the ticket can be assigned.</p>`);
+    }
+
     console.log("DOM Loaded");
-     //const targetSel = '.table-wrap';
+
     var strsToMatch = {
                 "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
                 "complete":["Other", "359 Request", "DBA"]
@@ -14,68 +18,23 @@ $(document).ready(function() {
     const selText = '#select_category';
     const newColor = '#FF5F1F';
     const checkSelectizeAvailability = () => {
-        const selectElement = document.querySelector(selText);
+        const selectElement = $(selText);
     
-        if (selectElement && selectElement.selectize) {
-            const selectizeControl = selectElement.selectize;
+        if (selectElement.length > 0 && selectElement[0].selectize) {
+            const selectizeControl = selectElement[0].selectize;
     
             selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
                 updateOptionStyles(selectizeControl);
             });
     
-            // selectElement.addEventListener('click', applyCustomStyles);
-            // selectElement.addEventListener('keyup', applyCustomStyles);
-    
-            // function applyCustomStyles() {
-            //     var strsToMatch = {
-            //         "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
-            //         "complete":["Other", "359 Request", "DBA"]
-            //     }
-            //     const newColor = '#FF5F1F';
-            //     setTimeout(() => {
-            //         const options = document.querySelectorAll('.selectize-dropdown-content .option');
-    
-            //         options.forEach((option, index) => {
-            //             if (exactTextMatch(option, strsToMatch.complete)) {
-            //                 option.style.color = newColor;
-            //             } else if (partialTextMatch(option, strsToMatch.partial)) {
-            //                 option.style.color = newColor;
-            //             }
-            //         });
-            //     }, 10);
-            // }
-    
          } else {
             setTimeout(checkSelectizeAvailability, 100);
          }
      };
-    //  if (hasTextElement1) {
-    //      hasTextElement1.addEventListener('click', function() {
-    //         console.log('scenario 1 click');
-    //          privateCategoryFontColor();
-    //      })
-         
-    //      hasTextElement1.addEventListener('change', function() {
-    //         console.log('scenario 2 change');
-    //          privateCategoryFontColor();
-    //      })
-    //  }
-    //  if (hasTextElement3) {
-    //     hasTextElement3.addEventListener('change', function() {
-    //         console.log('scenario 3 change');
-    //         privateCategoryFontColor();
-    //     })
-    //  }
-    // if (targetSel) {
-    //     longLooker(targetSel, hasTextElement3, element => {
-    //         console.log(`New element added: `, element);
-    //     });
-    // } else {
-    //     console.warn(`Element for '${targetSel}' not found!`);
-    // }
+
     checkSelectizeAvailability();
-    
+
     function updateOptionStyles(selectizeControl) {
         let options = $(selectizeControl.$dropdown_content).find('.option');
         options.each(function() {
