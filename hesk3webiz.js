@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var correctPageCheck = $('h2').filter(() => {
+    var correctPageCheck = $('h2').filter(function() {
         console.log(`h2 check outcome: ${$(this).text().trim() === 'Select ticket category'}`);
         return $(this).text().trim() === "Select ticket category";
     }).length > 0;
@@ -23,8 +23,8 @@ $(document).ready(function() {
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
     
-        if (selectElement.length > 0 && selectElement[0].selectize) {
-            const selectizeControl = selectElement[0].selectize;
+        if (selectElement.length > 0 && selectElement.selectize) { //return 'selectElement[0]' here?
+            const selectizeControl = selectElement.selectize; //...and here?
     
             selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
