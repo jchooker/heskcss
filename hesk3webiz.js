@@ -38,6 +38,10 @@ $(document).ready(function() {
             selectizeControl.on('change', () => {
                 persistStyleOnSelect(selectizeControl);
             });
+
+            selectizeControl.on('item_add', () => {
+                persistStyleOnSelect(selectizeControl);
+            });
     
          } else {
             setTimeout(checkSelectizeAvailability, 100);
@@ -47,6 +51,7 @@ $(document).ready(function() {
     checkSelectizeAvailability();
 
     function updateOptionStyles(selectizeControl) {
+        console.log('updateOptionStyles() function accessed.');
         try {
             let options = $(selectizeControl.$dropdown_content).find('.option');
             if (!options) throw new Error("options not available");
@@ -55,7 +60,7 @@ $(document).ready(function() {
                 let text = optionElement.text().trim();
                 var currColor = optionElement.css('color'); //check current color & compare to desired color
                 if (currColor.includes('rgb')) currColor = rgbToHex(currColor); //there might be no scenario where
-                if (shouldApplyOrangeText(text) && !currColor.toUpperCase() === newColor) {//it's rgb but we'll cover 
+                if (shouldApplyOrangeText(text) && currColor.toUpperCase() !== newColor) {//it's rgb but we'll cover 
                                                                                 //that edge
                     optionElement.css('color', newColor);                       //case anyway
                 }
@@ -68,8 +73,12 @@ $(document).ready(function() {
     function persistStyleOnSelect(selectizeControl) {
         selectizeControl.on('item_add', function(value, $item) {
             let optionText = $item.text().trim();
-            if (shouldStyleOrange(optionText)) {
+            try {
+                if (shouldApplyOrangeText(optionText)) {
                 $item.css('color', newColor);
+                }
+            } catch (error) {
+                console.warn("error encountered: ", error)
             }
         });
     }
@@ -94,34 +103,26 @@ $(document).ready(function() {
  });
 
 function exactTextMatch(element, searchText) {
-    //const elements = document.getElementsByTagName(tag);
-    // for (let element of elements) {
-        for (let item of searchText) {
-            if (element.textContent.trim() === item) {
-                return element;
-            }
+    for (let item of searchText) {
+        if (element.textContent.trim() === item) {
+            return element;
         }
-    // }
+    }
     return null;
 }
 
 function partialTextMatch(element, searchText) {
-    //const elements = document.querySelectorAll(tag);
-    // for (let element of elements) {
-        for (let item of searchText) {
-            if (element.textContent.includes(item)) {
-                return element;
-            }
+    for (let item of searchText) {
+        if (element.textContent.includes(item)) {
+            return element;
         }
-    // }
+    }
     return null;
 }
 
 function privateCategoryFontColor(selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content', 
 selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize-input.has-options'
 ) {
-    // const selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content';
-    // const selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize-input.has-options'
     const orangeClass = '.orange-text';
     for (let item of strsToMatch.partial) {
         var matchingElem = partialTextMatch(selPrefix1, item);
@@ -147,45 +148,6 @@ selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize
                 matchingElem.classList.add(orangeClass);
             }
         }
-    }//div match for selectize dropdown
-
-    //for (let item of strsToMatch.partial) {
-
-    //} //div match for selectize selected item, if private
-
-    //for (phrase in) //'div button' match on next pg for match (label of 'Category:')     <script src="src/script.js"></script>
+    }
 
 }
-
-// function longLooker(targetSelector, element, callback) {
-//     const target = document.querySelector(targetSelector);
-//     if (!target) {
-//         console.warn(`The target element ${targetSelector} was not found in the DOM!`)
-//         return;
-//     }
-
-//     if (!(element instanceof HTMLElement)) {
-//         console.error("The provided 'element' is not a valid HTMLElement.");
-//         return;
-//     }
-
-//     const observer =
-//     new MutationObserver((mutations) => {
-//         mutations.forEach((mutation) => {
-//             mutation.addedNodes.forEach((node) => {
-//                 if (node === element) {
-//                     //console.log(`Found target item with selector "${element}"!`);
-//                     callback(node);
-//                     observer.disconnect();
-//                 }
-//                 //else console.log(`Never found target item with selector "${element}"!`)
-//             });
-//         });
-//     });
-    
-//     observer.observe(target, {
-//         childList: true,
-//         subtree: true
-//     });
-
-// }
