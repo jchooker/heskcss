@@ -23,8 +23,8 @@ $(document).ready(function() {
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
     
-        if (selectElement.length > 0 && selectElement.selectize) { //return 'selectElement[0]' here?
-            const selectizeControl = selectElement.selectize; //...and here?
+        if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
+            const selectizeControl = selectElement[0].selectize; //...and here?
     
             selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
