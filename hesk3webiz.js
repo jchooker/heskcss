@@ -30,11 +30,9 @@ $(document).ready(function() {
     
             selectizeControl.on('dropdown_open', () => {
                 console.log('Linked up w/ selectize');
-                try {
-                    updateOptionStyles(selectizeControl);
-                } catch (error) {
-                    console.log('error loading styles for options', error);
-                }
+
+                updateOptionStyles(selectizeControl);
+
             });
 
             selectizeControl.on('change', () => {
@@ -49,17 +47,22 @@ $(document).ready(function() {
     checkSelectizeAvailability();
 
     function updateOptionStyles(selectizeControl) {
-        let options = $(selectizeControl.$dropdown_content).find('.option');
-        options.each(function() {
-            let optionElement = $(this);
-            let text = optionElement.text().trim();
-            var currColor = optionElement.css('color'); //check current color & compare to desired color
-            if (currColor.includes('rgb')) currColor = rgbToHex(currColor); //there might be no scenario where
-            if (shouldApplyOrangeText(text) && !currColor.toUpperCase() === newColor) {//it's rgb but we'll cover 
-                                                                            //that edge
-                optionElement.css('color', newColor);                       //case anyway
-            }
-        });
+        try {
+            let options = $(selectizeControl.$dropdown_content).find('.option');
+            if (!options) throw new Error("options not available");
+            options.each(function() {
+                let optionElement = $(this);
+                let text = optionElement.text().trim();
+                var currColor = optionElement.css('color'); //check current color & compare to desired color
+                if (currColor.includes('rgb')) currColor = rgbToHex(currColor); //there might be no scenario where
+                if (shouldApplyOrangeText(text) && !currColor.toUpperCase() === newColor) {//it's rgb but we'll cover 
+                                                                                //that edge
+                    optionElement.css('color', newColor);                       //case anyway
+                }
+            });
+        } catch (error) {
+            console.log("error encountered: ", error);
+        }
     }
 
     function persistStyleOnSelect(selectizeControl) {
