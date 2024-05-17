@@ -1,20 +1,27 @@
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
      
      //const hasTextElement1 = document.querySelector('.has-items'); //<--selector only works for purposes of clicking boundaries
      //console.log('"' + hasTextElement1 + '" was the result of selecting the class has-items');
      //const hasTextElement2 = document.querySelector('#cc-btn');
      //const hasTextElement3 = document.querySelector('#select_category');
      //console.log('"' + hasTextElement3 + '" was the result of selecting the id select_category');
-     console.log("DOM Loaded");
+    console.log("DOM Loaded");
      //const targetSel = '.table-wrap';
-     const checkSelectizeAvailability = () => {
-         const selectElement = document.querySelector('select');
+    var strsToMatch = {
+                "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
+                "complete":["Other", "359 Request", "DBA"]
+    }
+    const selText = '#select_category';
+    const newColor = '#FF5F1F';
+    const checkSelectizeAvailability = () => {
+        const selectElement = document.querySelector(selText);
     
-         if (selectElement && selectElement.selectize) {
+        if (selectElement && selectElement.selectize) {
             const selectizeControl = selectElement.selectize;
     
-            selectizeControl.on('dropdown_open', () => {
+            selectizeControl.on('initialize', () => {
                 console.log('Linked up w/ selectize');
+                privateCategoryFontColor(selText);
             });
     
             // selectElement.addEventListener('click', applyCustomStyles);
@@ -70,10 +77,10 @@
     checkSelectizeAvailability();
  });
 
-var strsToMatch = {
-    "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
-    "complete":["Other", "359 Request", "DBA"]
-}
+// var strsToMatch = {
+//     "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
+//     "complete":["Other", "359 Request", "DBA"]
+// }
 
 // function exactTextMatch(tag, searchText) {
 //     const elements = document.getElementsByTagName(tag);
@@ -118,18 +125,20 @@ function partialTextMatch(element, searchText) {
     return null;
 }
 
-function privateCategoryFontColor() {
-    const selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content';
-    const selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize-input.has-options'
-    const newColor = '#FF5F1F';
+function privateCategoryFontColor(selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content', 
+selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize-input.has-options'
+) {
+    // const selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content';
+    // const selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize-input.has-options'
+    const orangeClass = '.orange-text';
     for (let item of strsToMatch.partial) {
         var matchingElem = partialTextMatch(selPrefix1, item);
-        if (matchingElem && matchingElem.style.color != newColor) {
+        if (matchingElem && matchingElem.classList.contains(orangeClass)) {
             matchingElem.style.color = newColor;
         }
         else {
             matchingElem = partialTextMatch(selPrefix2, item);
-            if (matchingElem && matchingElem.style.color != newColor) {
+            if (matchingElem && matchingElem.classList.contains(orangeClass)) {
                 matchingElem.style.color = newColor;
             }
         }
@@ -137,12 +146,12 @@ function privateCategoryFontColor() {
     
     for (let item of strsToMatch.complete) {
         var matchingElem = exactTextMatch(selPrefix1, item);
-        if (matchingElem && matchingElem.style.color != newColor) {
+        if (matchingElem && matchingElem.classList.contains(orangeClass)) {
             matchingElem.style.color = newColor;
         }
         else {
             matchingElem = exactTextMatch(selPrefix2, item);
-            if (matchingElem && matchingElem.style.color != newColor) {
+            if (matchingElem && matchingElem.classList.contains(orangeClass)) {
                 matchingElem.stle.color = newColor;
             }
         }

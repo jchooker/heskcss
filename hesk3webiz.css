@@ -73,3 +73,7 @@ section.params--block.params ul {
 .note__description p {
 	word-wrap: break-word;
 }
+
+.orange-text {
+	color: #FF5F1F;
+}
