@@ -8,7 +8,8 @@ $(document).ready(function() {
         $('button').filter(function() {
             console.log('found button area for inserting');
            return $(this).text().trim() === "Click to continue";
-        }).after(`<p class='smaller-text'><span class='orange-text'>Orange text</span> is used to indicate PRIVATE categories. These categories will have a more limited list of users to whom
+        }).after(`<p class='smaller-text'>** <span class='orange-text'>Orange text</span> is used to indicate PRIVATE categories. 
+        These categories will have a more limited list of users to whom
         the ticket can be assigned.</p>`);
     }
 
@@ -18,17 +19,22 @@ $(document).ready(function() {
                 "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
                 "complete":["Other", "359 Request", "DBA"]
     }
+
     const selText = '#select_category';
     const newColor = '#FF5F1F';
-    const checkSelectizeAvailability = () => {
+    const checkSelectizeAvailability = function() {
         const selectElement = $(selText);
     
         if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
             const selectizeControl = selectElement[0].selectize; //...and here?
     
-            selectizeControl.on('dropdown_open', () => {
+            selectizeControl.on('dropdown_open', function() {
                 console.log('Linked up w/ selectize');
                 updateOptionStyles(selectizeControl);
+            });
+
+            selectizeControl.on('change', function() {
+                persistStyleOnSelect(selectizeControl);
             });
     
          } else {
@@ -43,8 +49,20 @@ $(document).ready(function() {
         options.each(function() {
             let optionElement = $(this);
             let text = optionElement.text().trim();
-            if (shouldApplyOrangeText(text)) {
-                optionElement.css('color', newColor);
+            var currColor = optionElement.css('color'); //check current color & compare to desired color
+            if (currColor.includes('rgb')) currColor = rgbToHex(currColor); //there might be no scenario where
+            if (shouldApplyOrangeText(text) && !currColor.toUpperCase() === newColor) {//it's rgb but we'll cover 
+                                                                            //that edge
+                optionElement.css('color', newColor);                       //case anyway
+            }
+        });
+    }
+
+    function persistStyleOnSelect(selectizeControl) {
+        selectizeControl.on('item_add', function(value, $item) {
+            let optionText = $item.text().trim();
+            if (shouldStyleOrange(optionText)) {
+                $item.css('color', newColor);
             }
         });
     }
@@ -58,32 +76,16 @@ $(document).ready(function() {
         }
         return false;
     }
+
+    function rgbToHex(rgb) {
+        var rgbParts = rgb.match(/\d+/g);
+        return "#" + rgbParts.map(function(x) {
+            x = parseInt(x).toString(16);
+            return (x.length === 1) ? "0" + x : x;
+        }).join("");
+    }
  });
 
-// var strsToMatch = {
-//     "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
-//     "complete":["Other", "359 Request", "DBA"]
-// }
-
-// function exactTextMatch(tag, searchText) {
-//     const elements = document.getElementsByTagName(tag);
-//     for (let element of elements) {
-//         if (element.textContent.trim() === searchText) {
-//             return element;
-//         }
-//     }
-//     return null;
-// }
-
-// function partialTextMatch(tag, searchText) {
-//     const elements = document.querySelectorAll(tag);
-//     for (let element of elements) {
-//         if (element.textContent.includes(searchText)) {
-//             return element;
-//         }
-//     }
-//     return null;
-// }
 function exactTextMatch(element, searchText) {
     //const elements = document.getElementsByTagName(tag);
     // for (let element of elements) {

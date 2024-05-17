@@ -79,5 +79,6 @@ section.params--block.params ul {
 }
 
 .smaller-text {
-	font-size: 0.9rem;
+	margin: 15px 0px 0px 20px;
+	font-size: 0.75rem;
 }
