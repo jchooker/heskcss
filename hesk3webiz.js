@@ -133,26 +133,26 @@ selPrefix2 = 'form[action="new_ticket.php"] .selectize-control.single .selectize
     const orangeClass = '.orange-text';
     for (let item of strsToMatch.partial) {
         var matchingElem = partialTextMatch(selPrefix1, item);
-        if (matchingElem && matchingElem.classList.contains(orangeClass)) {
-            matchingElem.style.color = newColor;
+        if (matchingElem && !matchingElem.classList.contains(orangeClass)) {
+            matchingElem.classList.add(orangeClass);
         }
         else {
             matchingElem = partialTextMatch(selPrefix2, item);
-            if (matchingElem && matchingElem.classList.contains(orangeClass)) {
-                matchingElem.style.color = newColor;
+            if (matchingElem && !matchingElem.classList.contains(orangeClass)) {
+                matchingElem.classList.add(orangeClass);
             }
         }
     } 
     
     for (let item of strsToMatch.complete) {
         var matchingElem = exactTextMatch(selPrefix1, item);
-        if (matchingElem && matchingElem.classList.contains(orangeClass)) {
-            matchingElem.style.color = newColor;
+        if (matchingElem && !matchingElem.classList.contains(orangeClass)) {
+            matchingElem.classList.add(orangeClass);
         }
         else {
             matchingElem = exactTextMatch(selPrefix2, item);
-            if (matchingElem && matchingElem.classList.contains(orangeClass)) {
-                matchingElem.stle.color = newColor;
+            if (matchingElem && !matchingElem.classList.contains(orangeClass)) {
+                matchingElem.classList.add(orangeClass);
             }
         }
     }//div match for selectize dropdown
