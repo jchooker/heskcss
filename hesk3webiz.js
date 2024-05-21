@@ -21,13 +21,10 @@ $(document).ready(function() { //select category page section
     const newColor = '#FF5F1F';
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
-        const selectElement2 = $(selText2);
         console.log((selectElement.length > 0 && selectElement2[0].selectize)); //<--test
     
-        if ((selectElement.length > 0 && selectElement[0].selectize) ||
-        (selectElement.length > 0 && selectElement2[0].selectize)) { //return 'selectElement' here?
+        if (selectElement.length > 0 && selectElement[0].selectize) {
             const selectizeControl = selectElement[0].selectize; //...and here?
-            const selectizeControl2 = selectElement2[0].selectize;
     
             selectizeControl.on('dropdown_open', () => {
 
@@ -45,10 +42,6 @@ $(document).ready(function() { //select category page section
 
             // var $assignToSel = "#owner-select".selectize(options); //Holli S
             // var selectize = $assignToSel[0].selectize;
-        
-            selectizeControl2.on('focus', function() { //Holli S requested portion
-                selectizeControl2.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
-            });
     
          } else {
             setTimeout(checkSelectizeAvailability, 100);
