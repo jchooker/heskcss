@@ -21,7 +21,7 @@ $(document).ready(function() { //select category page section
     const newColor = '#FF5F1F';
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
-        console.log((selectElement.length > 0 && selectElement2[0].selectize)); //<--test
+        console.log((selectElement.length > 0 && selectElement[0].selectize)); //<--test
     
         if (selectElement.length > 0 && selectElement[0].selectize) {
             const selectizeControl = selectElement[0].selectize; //...and here?
