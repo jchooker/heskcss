@@ -9,12 +9,6 @@ $(document).ready(function() {
         These categories will have a more limited list of users to whom
         the ticket can be assigned.</p>`);
     }
-    var $assignToSel = "#owner-select".selectize(options); //Holli S
-    var selectize = $assignToSel[0].selectize;
-
-    selectize.on('focus', function() { //Holli S requested portion
-        selectize.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
-    });
 
     console.log("DOM Loaded");
 
@@ -24,12 +18,16 @@ $(document).ready(function() {
     }
 
     const selText = '#select_category';
+    const selText2 = '#owner-select';
     const newColor = '#FF5F1F';
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
+        const selectElement2 = $(selText2);
     
-        if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
+        if ((selectElement.length > 0 && selectElement[0].selectize) ||
+        (selectElement.length > 0 && selectElement2[0].selectize)) { //return 'selectElement' here?
             const selectizeControl = selectElement[0].selectize; //...and here?
+            const selectizeControl2 = selectElement2[0].selectize;
     
             selectizeControl.on('dropdown_open', () => {
 
@@ -43,6 +41,13 @@ $(document).ready(function() {
 
             selectizeControl.on('item_add', () => {
                 persistStyleOnSelect(selectizeControl);
+            });
+
+            // var $assignToSel = "#owner-select".selectize(options); //Holli S
+            // var selectize = $assignToSel[0].selectize;
+        
+            selectizeControl2.on('focus', function() { //Holli S requested portion
+                selectizeControl2.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
             });
     
          } else {
