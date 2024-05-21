@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() { //select category page section
     var correctPageCheck = $('h2').filter(function() {
         return $(this).text().trim() === "Select ticket category";
     }).length > 0;
@@ -18,7 +18,6 @@ $(document).ready(function() {
     }
 
     const selText = '#select_category';
-    const selText2 = '#owner-select';
     const newColor = '#FF5F1F';
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
@@ -109,6 +108,36 @@ $(document).ready(function() {
         }).join("");
     }
  });
+
+ $(document).ready(function() { //ticket input page section -- Holli S started here 05/21/2024
+    var correctPageCheck = $('h3').filter(function() {
+        return $(this).text().trim() === "Insert a new ticket";
+    }).length > 0;
+    if (correctPageCheck) {
+        const selText = '#owner-select';
+        const checkSelectizeAvailability = () => {
+            const selectElement = $(selText);
+            console.log((selectElement.length > 0 && selectElement[0].selectize)); //<--test
+        
+            if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
+                const selectizeControl = selectElement[0].selectize; //...and here?
+    
+    
+                // var $assignToSel = "#owner-select".selectize(options); //Holli S
+                // var selectize = $assignToSel[0].selectize;
+            
+                selectizeControl.on('focus', function() { //Holli S requested portion
+                    selectizeControl.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
+                });
+        
+             } else {
+                setTimeout(checkSelectizeAvailability, 100);
+             }
+         };
+        }
+    
+        checkSelectizeAvailability();
+    });
 
 function exactTextMatch(element, searchText) {
     for (let item of searchText) {
