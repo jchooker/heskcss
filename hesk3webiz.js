@@ -106,30 +106,30 @@ $(document).ready(function() { //select category page section
     var correctPageCheck = $('h3').filter(function() {
         return $(this).text().trim() === "Insert a new ticket";
     }).length > 0;
-    if (correctPageCheck) {
-        const selText = '#owner-select';
-        const checkSelectizeAvailability = () => {
-            const selectElement = $(selText);
-            console.log((selectElement.length > 0 && selectElement[0].selectize)); //<--test
+    const selText = '#owner-select';
+    const checkSelectizeAvailability = () => {
+        const selectElement = $(selText);
+        console.log((selectElement.length > 0 && selectElement[0].selectize)); //<--test
         
-            if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
-                const selectizeControl = selectElement[0].selectize; //...and here?
-    
-    
-                // var $assignToSel = "#owner-select".selectize(options); //Holli S
-                // var selectize = $assignToSel[0].selectize;
+        if (selectElement.length > 0 && selectElement[0].selectize) { //return 'selectElement' here?
+            const selectizeControl = selectElement[0].selectize; //...and here?
             
-                selectizeControl.on('focus', function() { //Holli S requested portion
-                    selectizeControl.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
-                });
-        
-             } else {
-                setTimeout(checkSelectizeAvailability, 100);
-             }
-         };
+            
+            // var $assignToSel = "#owner-select".selectize(options); //Holli S
+            // var selectize = $assignToSel[0].selectize;
+            
+            selectizeControl.on('focus', function() { //Holli S requested portion
+                selectizeControl.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
+            });
+            
+        } else {
+            setTimeout(checkSelectizeAvailability, 100);
         }
-    
+    };
+    if (correctPageCheck) {
         checkSelectizeAvailability();
+    }
+    
     });
 
 function exactTextMatch(element, searchText) {
