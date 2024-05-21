@@ -23,6 +23,7 @@ $(document).ready(function() {
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
         const selectElement2 = $(selText2);
+        console.log((selectElement.length > 0 && selectElement2[0].selectize)); //<--test
     
         if ((selectElement.length > 0 && selectElement[0].selectize) ||
         (selectElement.length > 0 && selectElement2[0].selectize)) { //return 'selectElement' here?
