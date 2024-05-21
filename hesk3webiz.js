@@ -1,17 +1,20 @@
 $(document).ready(function() {
     var correctPageCheck = $('h2').filter(function() {
-        console.log(`h2 check outcome: ${$(this).text().trim() === 'Select ticket category'}`);
         return $(this).text().trim() === "Select ticket category";
     }).length > 0;
     if (correctPageCheck) {
-        console.log('Found h2');
         $('button').filter(function() {
-            console.log('found button area for inserting');
            return $(this).text().trim() === "Click to continue";
         }).after(`<p class='smaller-text'>** <span class='orange-text'>Orange text</span> is used to indicate PRIVATE categories. 
         These categories will have a more limited list of users to whom
         the ticket can be assigned.</p>`);
     }
+    var $assignToSel = "#owner-select".selectize(options); //Holli S
+    var selectize = $assignToSel[0].selectize;
+
+    selectize.on('focus', function() { //Holli S requested portion
+        selectize.clear(); //added by J Hooker on 05/21/2024 at 13:15pm cst
+    });
 
     console.log("DOM Loaded");
 
@@ -29,7 +32,6 @@ $(document).ready(function() {
             const selectizeControl = selectElement[0].selectize; //...and here?
     
             selectizeControl.on('dropdown_open', () => {
-                console.log('Linked up w/ selectize');
 
                 updateOptionStyles(selectizeControl);
 
