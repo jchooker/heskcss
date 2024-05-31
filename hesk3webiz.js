@@ -134,7 +134,7 @@ $(document).ready(function() { //select category page section
 
 //format ticket info page so email isn't initially hidden
 $(document).ready(function() {
-    var articleSel = 'article.ticker__body_block.original-message';
+    var articleSel = 'article.ticket__body_block.original-message';
     var correctPageCheck = $(articleSel).length > 0;
     console.log(correctPageCheck);
     if (correctPageCheck) {
