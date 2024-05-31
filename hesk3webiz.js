@@ -10,7 +10,7 @@ $(document).ready(function() { //select category page section
         the ticket can be assigned.</p>`);
     }
 
-    console.log("DOM Loaded");
+    //console.log("DOM Loaded");
 
     var strsToMatch = {
                 "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)"],
@@ -21,7 +21,7 @@ $(document).ready(function() { //select category page section
     const newColor = '#FF5F1F';
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
-        console.log((selectElement.length > 0 && selectElement[0].selectize)); //<--test
+        //console.log((selectElement.length > 0 && selectElement[0].selectize)); //<--test
     
         if (selectElement.length > 0 && selectElement[0].selectize) {
             const selectizeControl = selectElement[0].selectize; //...and here?
@@ -136,6 +136,7 @@ $(document).ready(function() { //select category page section
 $(document).ready(function() {
     var articleSel = 'article.ticker__body_block.original-message';
     var correctPageCheck = $(articleSel).length > 0;
+    console.log(correctPageCheck);
     if (correctPageCheck) {
         var searchText = 'mailto:'
         var elem = $(articleSel + ' a[href^="' + searchText + '"]');
