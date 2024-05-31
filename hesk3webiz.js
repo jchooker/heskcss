@@ -132,6 +132,19 @@ $(document).ready(function() { //select category page section
     
     });
 
+//format ticket info page so email isn't initially hidden
+$(document).ready(function() {
+    var articleSel = 'article.ticker__body_block.original-message';
+    var correctPageCheck = $(articleSel).length > 0;
+    if (correctPageCheck) {
+        var searchText = 'mailto:'
+        var elem = $(articleSel + ' a[href^="' + searchText + '"]');
+        var text = elem.text().trim();
+        var toInsert = `<div><span class="custom-field-title">Email:</span><span>${text}</span></div>`;
+        $('.block--head').after(toInsert);
+    }
+});
+
 function exactTextMatch(element, searchText) {
     for (let item of searchText) {
         if (element.textContent.trim() === item) {
