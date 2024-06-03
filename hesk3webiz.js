@@ -142,7 +142,7 @@ $(document).ready(function() {
         var elem = $(articleSel + ' a[href^="' + searchText + '"]');
         var text = elem.text().trim();
         var toInsert = `<div><span class="custom-field-title">Email: </span><span>${text}</span></div>`;
-        $(articleSel + '.block--head').after(toInsert);
+        $(articleSel + ' .block--head').after(toInsert);
     }
 });
 
