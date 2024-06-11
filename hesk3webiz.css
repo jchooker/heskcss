@@ -60,6 +60,11 @@ section.params--block.params ul {
 	overflow: scroll;
 }
 
+.dropdown-select.center ul.dropdown-list {
+	height: 30vh;
+	overflow: scroll;
+}
+
 .table thead {
 	height: 34px;
 }
