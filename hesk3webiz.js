@@ -152,7 +152,7 @@ $(document).ready(function() { //select category page section
         var selectize1 = $(inSelect)[0].selectize;
         var selectize2 = $(outSelect)[0].selectize;
         var patternMatch;
-        inDiv.on("change", function(value) {
+        selectize1.on("change", function(value) {
             if (value) {
                 var selOption1 = selectize1.getItem(value);
                 var selText1 = selOption1.text();
@@ -172,7 +172,7 @@ $(document).ready(function() { //select category page section
                     }
                 }
             }
-        }).next('input');
+        });
     }
     
     });
