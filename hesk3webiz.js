@@ -146,6 +146,26 @@ $(document).ready(function() {
     }
 });
 
+//06.12.2024 - auto input asset # with comp name
+$(document).ready(function() {
+    var inDiv = $('.main__content.ticket-create .form-group label').filter(function() {
+        return $(this).text().trim() === "Computer Name:";
+    }).next('input');
+    const compNameCheck = /210\d+$/;
+    var outDiv = $('.main__content.ticket-create .form-group label').filger(function() {
+        return $(this).text().trim() === "Asset Tag No.";
+    }).next('input');
+    $(inDiv).on("input", function() {
+        if (compNameCheck.test(inDiv.val())) {
+            outDiv.clear();
+            outDiv.val() = inDiv.val();
+        }
+        else {
+            outDiv.clear();
+        }
+    })
+});
+
 function exactTextMatch(element, searchText) {
     for (let item of searchText) {
         if (element.textContent.trim() === item) {
