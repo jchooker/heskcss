@@ -128,6 +128,51 @@ $(document).ready(function() { //select category page section
     };
     if (correctPageCheck) {
         checkSelectizeAvailability();
+        regionFixer();
+    }
+    //below on 06/12/2024 - autoselect region
+    function regionFixer() {
+        const patterns = [
+            {type: 'central office', regex1: /\b[C][a-z]+ [O][a-z]+\b/g, regex2: /\b[C][a-z]+ [O][a-z]+\b/g},
+            //^contains scenario for regex2 here
+            {type: 'ce', regex1: /\bCE\b/g, regex2: /\b[C][a-z]+ [R][a-z]+\b/g},//central region
+            {type: 'ne', regex1: /\bNE\b/g, regex2: /\bNE [R][a-z]+\b/g},
+            {type: 'nw', regex1: /\bNW\b/g, regex2: /\bNW [R][a-z]+\b/g},
+            {type: 'se', regex1: /\bSE\b/g, regex2: /\bSE [R][a-z]+\b/g},
+            {type: 'sw', regex1: /\bSW\b/g, regex2: /\bSW [R][a-z]+\b/g}
+        ]
+        var label1Check = /[Cc]urrent.+[Uu]ser/gi;
+        var label2Check = /Region:/g
+        var inSelect = $('.main__content.ticket-create .form-group label').filter(function() {
+            return $(this).text().match(label1Check);
+        }).next('select');
+        var outSelect = $('.main__content.ticket-create .form-group label').filter(function() {
+            return $(this).text().match(label2Check);
+        }).next('select');
+        var selectize1 = $(inSelect)[0].selectize;
+        var selectize2 = $(outSelect)[0].selectize;
+        var patternMatch;
+        inDiv.on("change", function(value) {
+            if (value) {
+                var selOption1 = selectize1.getItem(value);
+                var selText1 = selOption1.text();
+                for (let pattern of patterns) {
+                    if (pattern.regex1.test(selText1)) {
+                        patternMatch = pattern;
+                        break;
+                    }
+                }
+                var s2options = selectize2.options;
+                for (var key in s2options) {
+                    if (s2options.hasOwnProperty(key)) {
+                        if(patternMatch.regex2.test(s2options[key].text)) {
+                            selectize2.setValue(key);
+                            break;
+                        }
+                    }
+                }
+            }
+        }).next('input');
     }
     
     });
@@ -185,6 +230,10 @@ function partialTextMatch(element, searchText) {
         }
     }
     return null;
+}
+
+function matchRegion() {
+    $()
 }
 
 function privateCategoryFontColor(selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content', 
