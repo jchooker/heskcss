@@ -152,7 +152,7 @@ $(document).ready(function() {
         return $(this).text().trim() === "Computer Name:";
     }).next('input');
     const compNameCheck = /210\d+$/;
-    var outDiv = $('.main__content.ticket-create .form-group label').filger(function() {
+    var outDiv = $('.main__content.ticket-create .form-group label').filter(function() {
         return $(this).text().trim() === "Asset Tag No.";
     }).next('input');
     $(inDiv).on("input", function() {
