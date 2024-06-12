@@ -159,11 +159,11 @@ $(document).ready(function() { //select category page section
                 for (let pattern of patterns) {
                     if (pattern.regex1.test(selText1)) {
                         patternMatch = pattern;
-                        alert("3-skipped a bunch-1st pattern matched");
                         break;
+                        }
                     }
-                }
                 var s2options = selectize2.options;
+                alert(`4-options: ${s2options}`);
                 for (var key in s2options) {
                     if (s2options.hasOwnProperty(key)) {
                         if(patternMatch.regex2.test(s2options[key].text)) {
