@@ -154,12 +154,12 @@ $(document).ready(function() { //select category page section
         var patternMatch;
         selectize1.on("change", function(value) {
             if (value) {
-                alert("2-there is a 'value'");
                 var selOption1 = selectize1.getItem(value);
                 var selText1 = selOption1.text();
                 for (let pattern of patterns) {
                     if (pattern.regex1.test(selText1)) {
                         patternMatch = pattern;
+                        alert("3-skipped a bunch-1st pattern matched");
                         break;
                     }
                 }
