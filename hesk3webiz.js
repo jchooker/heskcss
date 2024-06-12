@@ -157,11 +157,11 @@ $(document).ready(function() {
     }).next('input');
     $(inDiv).on("input", function() {
         if (compNameCheck.test(inDiv.val())) {
-            outDiv.clear();
+            outDiv.val() = "";
             outDiv.val() = inDiv.val();
         }
         else {
-            outDiv.clear();
+            outDiv.val() = "";
         }
     })
 });
