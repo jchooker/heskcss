@@ -164,8 +164,8 @@ $(document).ready(function() { //select category page section
                     }
                 var s2options = selectize2.options;
                 for (var key in s2options) {
-                    alert(`5-keys: ${s2options.hasOwnProperty(key)}`);
                     if (s2options.hasOwnProperty(key)) {
+                        alert(`6-pattern: ${patternMatch.regex2.test(s2options[key].text)}`);
                         if(patternMatch.regex2.test(s2options[key].text)) {
                             selectize2.setValue(key);
                             break;
