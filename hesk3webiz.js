@@ -165,8 +165,8 @@ $(document).ready(function() { //select category page section
                 var s2options = selectize2.options;
                 for (var key in s2options) {
                     if (s2options.hasOwnProperty(key)) {
-                        console.log(`option properties ${s2options}`, '\n', `option add'l ${key}`, '\n', `option add'l 2 ${s2options[key]}`);
-                        if(patternMatch.regex2.test(s2options[key].text)) { //<--always false?
+                        //console.log(`option properties ${s2options}`, '\n', `option add'l ${key}`, '\n', `option add'l 2 ${s2options[key]}`);
+                        if(patternMatch.regex2.test(key)) { //<--always false?
                             selectize2.setValue(key);
                             break;
                         }
