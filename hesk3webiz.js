@@ -153,6 +153,7 @@ $(document).ready(function() { //select category page section
         var selectize2 = $(outSelect)[0].selectize;
         var patternMatch;
         selectize1.on("change", function(value) {
+            alert("selectize for location changed");
             if (value) {
                 var selOption1 = selectize1.getItem(value);
                 var selText1 = selOption1.text();
