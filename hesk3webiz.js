@@ -156,9 +156,12 @@ $(document).ready(function() {
         return $(this).text().trim() === "Asset Tag No.";
     }).next('input');
     $(inDiv).on("input", function() {
-        if (compNameCheck.test(inDiv.val())) {
+        var inputVal = $(this).val();
+        var match = inputVal.match(compNameCheck);
+        if (match) {
             outDiv.val("");
-            outDiv.val(inDiv.val());
+            var selPart = match[0]; //<--the section that matches
+            outDiv.val(selPart);
         }
         else {
             outDiv.val("");
