@@ -182,10 +182,10 @@ $(document).ready(function() { //select category page section
 $(document).ready(function() {
     var articleSel = 'article.original-message';
     var correctPageCheck = $(articleSel).length > 0;
-    console.log(correctPageCheck);
+    //console.log(correctPageCheck);
     if (correctPageCheck) {
         var searchText = 'mailto:'
-        var elem = $(articleSel + ' a[href^="' + searchText + '"]');
+        var elem = $(articleSel + ' ul.dropdown-list li.noclose a[href^="' + searchText + '"]');
         var text = elem.text().trim();
         var toInsert = `<div><span class="custom-field-title">Email: </span><span>${text}</span></div>`;
         $(articleSel + ' .block--head').after(toInsert);
