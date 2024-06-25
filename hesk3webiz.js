@@ -13,8 +13,8 @@ $(document).ready(function() { //select category page section
     //console.log("DOM Loaded");
 
     var strsToMatch = {
-                "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)", "ges/Upd"],
-                "complete":["Other", "359 Request", "DBA", "Installs", "Travel", "General Maintenance"]
+                "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)", "ges/Upd", "& R r"],
+                "complete":["Other", "359 Request", "DBA", "Installs", "Travel", "General Maintenance", "KnowBe4"]
     }
 
     const selText = '#select_category';
