@@ -129,7 +129,11 @@ $(document).ready(function() { //select category page section
     if (correctPageCheck) {
         checkSelectizeAvailability();
         regionFixer();
-        inferEmailAddress();
+        var fromField = $('input#create_name');
+        var toField = $('input#email');
+        fromField.on('input', function() {
+            inferEmailAddress(fromField, toField);
+        });
     }
     //below on 06/12/2024 - autoselect region
     function regionFixer() {
@@ -177,9 +181,7 @@ $(document).ready(function() { //select category page section
         });
     }
 
-    function inferEmailAddress() { //get email from name
-        var fromField = $('input#create_name');
-        var toField = $('input#email');
+    function inferEmailAddress(fromField, toField) { //get email from name
         const fromCheck = /((\b[a-zA-Z]+\b))+/g; //and then the part without a space after it
         var matchArr = (fromField.text().trim()).split(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
