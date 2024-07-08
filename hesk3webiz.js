@@ -189,7 +189,7 @@ $(document).ready(function() { //select category page section
         var matchArr = (fromField.val()).match(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
         if (matchArr.length > 1) {
-            toField.text(toOutput.toLowerCase());
+            toField.val(toOutput.toLowerCase());
         }
     }
     
