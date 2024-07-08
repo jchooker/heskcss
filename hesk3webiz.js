@@ -182,10 +182,13 @@ $(document).ready(function() { //select category page section
     }
 
     function inferEmailAddress(fromField, toField) { //get email from name
-        const fromCheck = /((\b[a-zA-Z]+\b))+/g; //and then the part without a space after it
+        const fromCheck = /(\b[a-zA-Z]+\b)+/g; //and then the part without a space after it
         var matchArr = (fromField.text().trim()).split(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
-        toField.text(toOutput.toLowerCase());
+        if (matchArr.length > 1) {
+            console.log("success in generating str array");
+            toField.text(toOutput.toLowerCase());
+        }
     }
     
     });
