@@ -129,6 +129,7 @@ $(document).ready(function() { //select category page section
     if (correctPageCheck) {
         checkSelectizeAvailability();
         regionFixer();
+        inferEmailAddress();
     }
     //below on 06/12/2024 - autoselect region
     function regionFixer() {
@@ -174,6 +175,15 @@ $(document).ready(function() { //select category page section
                 }
             }
         });
+    }
+
+    function inferEmailAddress() { //get email from name
+        var fromField = $('input#create_name');
+        var toField = $('input#email');
+        const fromCheck = /((\b[a-zA-Z]+\b))+/g; //and then the part without a space after it
+        var matchArr = (fromField.text().trim()).split(fromCheck);
+        var toOutput = matchArr.join('.') + "@arkansas.gov";
+        toField.val() = toOutput;
     }
     
     });
