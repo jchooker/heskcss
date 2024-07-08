@@ -182,11 +182,11 @@ $(document).ready(function() { //select category page section
     }
 
     function inferEmailAddress(fromField, toField) { //get email from name
+        console.log("infer function invoked");
         const fromCheck = /(\b[a-zA-Z]+\b)+/g; //and then the part without a space after it
         var matchArr = (fromField.text().trim()).split(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
         if (matchArr.length > 1) {
-            console.log("success in generating str array");
             toField.text(toOutput.toLowerCase());
         }
     }
