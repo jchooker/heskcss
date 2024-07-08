@@ -183,6 +183,7 @@ $(document).ready(function() { //select category page section
 
     function inferEmailAddress(fromField, toField) { //get email from name
         const fromCheck = /\b[a-zA-Z]+\b/g; //and then the part without a space after it
+        console.log(fromField.text());
         var testRes = fromCheck.test(fromField.text()) ? "match" : "NO MATCH";
         console.log(testRes);
         var matchArr = (fromField.text().trim()).split(fromCheck);
