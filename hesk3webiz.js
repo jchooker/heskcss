@@ -186,7 +186,7 @@ $(document).ready(function() { //select category page section
         // console.log(fromField.val());
         // var testRes = fromCheck.test(fromField.val()) ? "match" : "NO MATCH";
         // console.log(testRes);
-        var matchArr = (fromField.val()).split(' ');
+        var matchArr = (fromField.val()).split(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
         if (matchArr.length > 1) {
             toField.text(toOutput.toLowerCase());
