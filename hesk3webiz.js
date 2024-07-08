@@ -129,8 +129,8 @@ $(document).ready(function() { //select category page section
     if (correctPageCheck) {
         checkSelectizeAvailability();
         regionFixer();
-        var fromField = $('input#create_name');
-        var toField = $('input#email');
+        var fromField = $('#create_name');
+        var toField = $('#email');
         $(fromField).on('input', function() {
             inferEmailAddress(fromField, toField);
         });
