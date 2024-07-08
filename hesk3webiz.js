@@ -131,7 +131,7 @@ $(document).ready(function() { //select category page section
         regionFixer();
         var fromField = $('input#create_name');
         var toField = $('input#email');
-        fromField.on('input', function() {
+        $(fromField).on('input', function() {
             inferEmailAddress(fromField, toField);
         });
     }
