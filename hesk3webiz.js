@@ -182,8 +182,9 @@ $(document).ready(function() { //select category page section
     }
 
     function inferEmailAddress(fromField, toField) { //get email from name
-        console.log("infer function invoked");
         const fromCheck = /(\b[a-zA-Z]+\b)+/g; //and then the part without a space after it
+        var testRes = fromCheck.test(fromField.text()) ? "match" : "NO MATCH";
+        console.log(testRes);
         var matchArr = (fromField.text().trim()).split(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
         if (matchArr.length > 1) {
