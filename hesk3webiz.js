@@ -112,6 +112,7 @@ $(document).ready(function() { //select category page section
     // }, 50);
     insertHere.after(toInsert);
     $('#email-toast').addClass('toast');
+    addStylesToToast();
     console.log($('#email-toast'))
     //$('body').append(toInsert);
     var toastElem = $('#email-toast');
@@ -227,6 +228,35 @@ $(document).ready(function() { //select category page section
             toastReady = true;
         }, 3000);
 
+    }
+
+    function addStylesToToast() {
+        var styles = `
+        .toast {
+            visibility: hidden;
+            min-width: 150px;
+            background-color: blanchedalmond;
+            color: dimgray;
+            text-align: center;
+            position: absolute;
+            padding: 8px;
+            z-index: 1;
+            border-radius: 2px;
+            font-size: 12px;
+            opacity: 0;
+            bottom: 0;
+    }
+
+    .toast.show {
+	    visibility: visible;
+	    -webkit-animation: fadein 1s, fadeout 1s 2s;
+	    animation: fadein 1s, fadeout 1s 2s;
+    }
+    `;
+    $('<style>')
+        .prop('type', 'text/css')
+        .html(styles)
+        .appendTo('head');
     }
     
     });
