@@ -187,16 +187,18 @@ $(document).ready(function() { //select category page section
     }
 
     function inferEmailAddress(fromField, toField) { //get email from name
-        const fromCheck = /\b[a-zA-Z]+\b/g; //and then the part without a space after it
-        var matchArr = (fromField.val()).match(fromCheck);
-        var toOutput = matchArr.join('.') + "@arkansas.gov";
-        if (matchArr.length > 1) {
-            if (!gotToLength) gotToLength = true;
-            //if (!toastReady) toastReady = true;
-            toField.val(toOutput.toLowerCase());
-            if (toastReady) {
-                showEmailToast();
-                toastReady = false;
+        if (fromField.length > 0) {
+            const fromCheck = /\b[a-zA-Z]+\b/g; //and then the part without a space after it
+            var matchArr = (fromField.val()).match(fromCheck);
+            var toOutput = matchArr.join('.') + "@arkansas.gov";
+            if (matchArr.length > 1) {
+                if (!gotToLength) gotToLength = true;
+                //if (!toastReady) toastReady = true;
+                toField.val(toOutput.toLowerCase());
+                if (toastReady) {
+                    showEmailToast();
+                    toastReady = false;
+                }
             }
         }
     }
