@@ -213,7 +213,7 @@ $(document).ready(function() { //select category page section
     function showEmailToast() {
 
         var offset = insertHere.offset();
-        var inputHeight = offset.top();
+        var inputHeight = insertHere.outerHeight();
         var viewportWidth = $(window).width();
 
         var topPos = inputHeight;
