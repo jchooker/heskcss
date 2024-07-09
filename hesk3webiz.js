@@ -101,13 +101,13 @@ $(document).ready(function() { //select category page section
  $(document).ready(function() { //ticket input page section -- Holli S started here 05/21/2024
     var toastReady = true;
     var gotToLength = false;
-    var toInsert = `<div id='email-toast'>Please double-check auto-generated email address for accuracy</div>`;
+    var toInsert = `<div id='email-toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
     var insertHere = $('#email');
     // setTimeout(function() {
     //     insertHere.after(toInsert);
     // }, 50);
     insertHere.after(toInsert);
-    $('#email-toast').addClass('toast');
+    //$('#email-toast').addClass('toast');
     addStylesToToast();
     console.log($('#email-toast'))
     //$('body').append(toInsert);
@@ -195,8 +195,8 @@ $(document).ready(function() { //select category page section
             //if (!toastReady) toastReady = true;
             toField.val(toOutput.toLowerCase());
             if (toastReady) {
-                toastReady = false;
                 showEmailToast();
+                toastReady = false;
             }
         }
     }
@@ -227,12 +227,13 @@ $(document).ready(function() { //select category page section
         .toast {
             visibility: hidden;
             min-width: 150px;
+            height: 70px;
             background-color: blanchedalmond;
             color: dimgray;
             text-align: center;
             position: absolute;
             padding: 8px;
-            z-index: 5;
+            z-index: 10;
             border-radius: 2px;
             font-size: 12px;
             opacity: 0;
