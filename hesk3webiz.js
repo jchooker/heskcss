@@ -105,9 +105,10 @@ $(document).ready(function() { //select category page section
  $(document).ready(function() { //ticket input page section -- Holli S started here 05/21/2024
     var toastReady = true;
     var gotToLength = false;
-    var toInsert = `<div id='email_toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
+    var toInsert = `<div id='email_toast'>Please double-check auto-generated email address for accuracy</div>`;
     var insertHere = $('#email');
     insertHere.after(toInsert);
+    $('#email_toast').addClass('toast');
     //$('body').append(toInsert);
     var toastElem = $('#email_toast');
     var correctPageCheck = $('h3').filter(function() {
