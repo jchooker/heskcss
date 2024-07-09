@@ -216,7 +216,7 @@ $(document).ready(function() { //select category page section
         var inputHeight = insertHere.outerHeight();
         var viewportWidth = $(window).width();
 
-        var topPos = inputHeight;
+        var topPos = offset.top + inputHeight;
         var leftPos = offset.left + (viewportWidth / 2) - (toastElem.outerWidth() / 2);
 
         toastElem.css({
