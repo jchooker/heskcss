@@ -89,7 +89,7 @@ section.params--block.params ul {
 }
 
 //toast section
-.toast {
+#email-toast.toast {
 	visibility: hidden;
 	min-width: 150px;
 	background-color: blanchedalmond;
@@ -104,7 +104,7 @@ section.params--block.params ul {
 	bottom: 0;
 }
 
-.toast.show {
+#email-toast.toast.show {
 	visibility: visible;
 	-webkit-animation: fadein 1s, fadeout 1s 2s;
 	animation: fadein 1s, fadeout 1s 2s;

@@ -107,9 +107,10 @@ $(document).ready(function() { //select category page section
     var gotToLength = false;
     var toInsert = `<div id='email-toast'>Please double-check auto-generated email address for accuracy</div>`;
     var insertHere = $('#email');
-    setTimeout(function() {
-        insertHere.after(toInsert);
-    }, 50);
+    // setTimeout(function() {
+    //     insertHere.after(toInsert);
+    // }, 50);
+    insertHere.after(toInsert);
     $('#email-toast').addClass('toast');
     console.log($('#email-toast'))
     //$('body').append(toInsert);
