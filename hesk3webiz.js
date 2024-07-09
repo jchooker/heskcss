@@ -213,8 +213,11 @@ $(document).ready(function() { //select category page section
     function showEmailToast() {
 
         var offset = insertHere.offset();
-        var topPos = offset.top + insertHere.outerHeight();
-        var leftPos = offset.left;
+        var inputHeight = insertHere.outerHeight();
+        var viewportWidth = $(window).width();
+
+        var topPos = offset.top + inputHeight;
+        var leftPos = offset.left + (viewportWidth / 2) - (toastElem.outerWidth() / 2);
 
         toastElem.css({
             top: topPos + 'px',
@@ -246,14 +249,34 @@ $(document).ready(function() { //select category page section
             border-radius: 2px;
             font-size: 12px;
             opacity: 0;
-            bottom: 0;
-    }
+            top: 0;
+        }
 
-    .toast.show {
-	    visibility: visible;
-	    -webkit-animation: fadein 1s, fadeout 1s 2s;
-	    animation: fadein 1s, fadeout 1s 2s;
-    }
+        .toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 1s, fadeout 1s 2s;
+            animation: fadein 1s, fadeout 1s 2s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+            
+        @keyframes fadein {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+            
+        @-webkit-keyframes fadeout {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
+            
+        @keyframes fadeout {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
     `;
     $('<style>')
         .prop('type', 'text/css')
