@@ -103,6 +103,13 @@ $(document).ready(function() { //select category page section
  });
 
  $(document).ready(function() { //ticket input page section -- Holli S started here 05/21/2024
+    var toastReady = false;
+    var gotToLength = false;
+    var toInsert = `<div id='email_toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
+    var insertHere = $('#email');
+    //insertHere.after(toInsert);
+    $('body').append(toInsert);
+    var toastElem = $('#email_toast');
     var correctPageCheck = $('h3').filter(function() {
         return $(this).text().trim() === "Insert a new ticket";
     }).length > 0;
@@ -183,14 +190,37 @@ $(document).ready(function() { //select category page section
 
     function inferEmailAddress(fromField, toField) { //get email from name
         const fromCheck = /\b[a-zA-Z]+\b/g; //and then the part without a space after it
-        // console.log(fromField.val());
-        // var testRes = fromCheck.test(fromField.val()) ? "match" : "NO MATCH";
-        // console.log(testRes);
         var matchArr = (fromField.val()).match(fromCheck);
         var toOutput = matchArr.join('.') + "@arkansas.gov";
         if (matchArr.length > 1) {
+            if (!gotToLength) gotToLength = true;
+            //if (!toastReady) toastReady = true;
             toField.val(toOutput.toLowerCase());
+            if (toastReady) {
+                showEmailToast();
+            }
         }
+    }
+
+    function showEmailToast() {
+
+        var offset = insertHere.offset();
+        var topPos = offset.top + insertHere.outerHeight();
+        var leftPos = offset.left;
+
+        toastElem.css({
+            top: topPos + 'px',
+            left: leftPos + 'px'
+        });
+
+        setTimeout(function() {
+            toastElem.addClass('show'); }, 10);
+
+        setTimeout(function() {
+            toastElem.removeClass('show'); 
+            toastReady = true;
+        }, 3000);
+
     }
     
     });
