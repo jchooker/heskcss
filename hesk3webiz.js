@@ -213,11 +213,11 @@ $(document).ready(function() { //select category page section
     function showEmailToast() {
 
         var offset = insertHere.offset();
-        var inputHeight = insertHere.outerHeight();
+        var inputHeight = insertHere.top();
         var viewportWidth = $(window).width();
 
-        var topPos = offset.top + inputHeight;
-        var leftPos = offset.left + (viewportWidth / 2) - (toastElem.outerWidth() / 2);
+        var topPos = offset.top;
+        var leftPos = offset.left;
 
         toastElem.css({
             top: topPos + 'px',
@@ -250,6 +250,7 @@ $(document).ready(function() { //select category page section
             font-size: 12px;
             opacity: 0;
             top: 0;
+            left: 0;
         }
 
         .toast.show {
