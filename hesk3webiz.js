@@ -103,7 +103,7 @@ $(document).ready(function() { //select category page section
  });
 
  $(document).ready(function() { //ticket input page section -- Holli S started here 05/21/2024
-    var toastReady = false;
+    var toastReady = true;
     var gotToLength = false;
     var toInsert = `<div id='email_toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
     var insertHere = $('#email');
@@ -197,6 +197,7 @@ $(document).ready(function() { //select category page section
             //if (!toastReady) toastReady = true;
             toField.val(toOutput.toLowerCase());
             if (toastReady) {
+                toastReady = false;
                 showEmailToast();
             }
         }
