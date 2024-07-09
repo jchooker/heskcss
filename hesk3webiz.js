@@ -107,8 +107,8 @@ $(document).ready(function() { //select category page section
     var gotToLength = false;
     var toInsert = `<div id='email_toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
     var insertHere = $('#email');
-    //insertHere.after(toInsert);
-    $('body').append(toInsert);
+    insertHere.after(toInsert);
+    //$('body').append(toInsert);
     var toastElem = $('#email_toast');
     var correctPageCheck = $('h3').filter(function() {
         return $(this).text().trim() === "Insert a new ticket";
