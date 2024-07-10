@@ -137,14 +137,16 @@ $(document).ready(function() { //select category page section
         regionFixer();
         var fromField = $('#create_name');
         var toField = $('#email');
-        // $(fromField).on('input', function() { //changed from .on('input',...) to .on('keydown') to track specific kind of key presses
-        //     inferEmailAddress(fromField, toField);
-        // });
+        var lastKeyCheck = false;
         $(fromField).on('keydown', function(event) {
-            inferEmailAddress(fromField, toField);
+            //inferEmailAddress(fromField, toField);
             if (!(event.key === 'Backspace' || event.key === "Delete")) {
-                inferEmailAddress(fromField, toField);
+                lastKeyCheck = true;
+                //inferEmailAddress(fromField, toField);
             }
+        });
+        $(fromField).on('input', function() { //added .on('keydown') to track specific kind of key presses
+            inferEmailAddress(fromField, toField, lastKeyCheck);
         });
     }
     //below on 06/12/2024 - autoselect region
@@ -193,7 +195,7 @@ $(document).ready(function() { //select category page section
         });
     }
 
-    function inferEmailAddress(fromField, toField) { //get email from name
+    function inferEmailAddress(fromField, toField, lastKeyCheck) { //get email from name
         if (fromField.length > 0) {
             const fromCheck = /\b[a-zA-Z]+\b/g; //and then the part without a space after it
             var matchArr = (fromField.val()).match(fromCheck);
@@ -203,7 +205,7 @@ $(document).ready(function() { //select category page section
                     if (!gotToLength) gotToLength = true;
                     if (!toastReady) toastReady = true;
                     toField.val(toOutput.toLowerCase());
-                    if (toastReady) {
+                    if (toastReady && lastKeyCheck) {
                         showEmailToast();
                         toastReady = false;
                     }
