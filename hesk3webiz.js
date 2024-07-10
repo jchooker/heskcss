@@ -102,11 +102,12 @@ $(document).ready(function() { //select category page section
     var toastReady = true;
     var gotToLength = false;
     var toInsert = `<div id='email-toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
+    $('body').append(toInsert);
     var insertHere = $('#email');
     // setTimeout(function() {
     //     insertHere.after(toInsert);
     // }, 50);
-    insertHere.after(toInsert);
+    //insertHere.after(toInsert); <--07/10/2024 reactivate?
     //$('#email-toast').addClass('toast');
     addStylesToToast();
     console.log($('#email-toast'))
@@ -214,10 +215,12 @@ $(document).ready(function() { //select category page section
 
         var offset = insertHere.offset();
         var inputHeight = insertHere.outerHeight();
+        var inputWidth = insertHere.outerWidth();
+        var toastWidth = toInsert.outerWidth();
         var viewportWidth = $(window).width();
 
         var topPos = offset.top + inputHeight;
-        var leftPos = offset.left + (viewportWidth / 2) - (toastElem.outerWidth() / 2);
+        var leftPos = offset.left + (inputWidth / 2) - (toastWidth / 2);
 
         toastElem.css({
             top: topPos + 'px',
@@ -237,8 +240,8 @@ $(document).ready(function() { //select category page section
     function addStylesToToast() {
         var styles = `
         .toast {
-            visibility: hidden;
-            min-width: 150px;
+            display: none;
+            min-width: 15vw;
             height: 70px;
             background-color: blanchedalmond;
             color: dimgray;
@@ -249,14 +252,12 @@ $(document).ready(function() { //select category page section
             border-radius: 2px;
             font-size: 12px;
             opacity: 0;
-            top: 0;
-            left: 0;
+            transition: opacity 2s ease-in-out;
         }
 
         .toast.show {
-            visibility: visible;
-            -webkit-animation: fadein 1s, fadeout 1s 2s;
-            animation: fadein 1s, fadeout 1s 2s;
+            display: block;
+            opacity: 1;
         }
 
         @-webkit-keyframes fadein {
