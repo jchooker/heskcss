@@ -141,6 +141,7 @@ $(document).ready(function() { //select category page section
         //     inferEmailAddress(fromField, toField);
         // });
         $(fromField).on('keydown', function(event) {
+            inferEmailAddress(fromField, toField);
             if (!(event.key === 'Backspace' || event.key === "Delete")) {
                 inferEmailAddress(fromField, toField);
             }
