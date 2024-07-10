@@ -228,10 +228,11 @@ $(document).ready(function() { //select category page section
         var toastWidth = toInsert.outerWidth();
         //var viewportWidth = $(window).width();
 
-        // var topPos = offset.top + inputHeight;
-        // var leftPos = offset.left + (inputWidth / 2) - (toastWidth / 2);
-        var topPos = offset.top;
-        var leftPos = offset.left + (inputWidth / 4) - (toastWidth / 2);
+        var topPos = offset.top + inputHeight;
+        var leftPos = offset.left + (inputWidth / 2) - (toastWidth / 2);
+
+        // var topPos = offset.top;
+        // var leftPos = offset.left + (inputWidth / 4) - (toastWidth / 2);
 
         toastElem.css({
             top: topPos + 'px',
