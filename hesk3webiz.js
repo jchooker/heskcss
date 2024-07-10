@@ -228,6 +228,12 @@ $(document).ready(function() { //select category page section
         var toastWidth = toInsert.outerWidth();
         //var viewportWidth = $(window).width();
 
+        console.log("Offset top: " + offset.top);
+        console.log("Offset left: " + offset.left);
+        console.log("Input height: " + inputHeight);
+        console.log("Input width: " + inputWidth);
+        console.log("Toast width: " + toastWidth);
+
         var topPos = offset.top + inputHeight;
         var leftPos = offset.left + (inputWidth / 4) - (toastWidth / 2);
 
