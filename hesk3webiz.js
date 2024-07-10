@@ -101,7 +101,7 @@ $(document).ready(function() { //select category page section
  $(document).ready(function() { //ticket input page section -- Holli S started here 05/21/2024
     var toastReady = true;
     var gotToLength = false;
-    var toInsert = `<div id='email-toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`;
+    var toInsert = $(`<div id='email-toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`);
     $('body').append(toInsert);
     var insertHere = $('#email');
     // setTimeout(function() {
