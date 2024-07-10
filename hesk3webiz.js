@@ -137,8 +137,13 @@ $(document).ready(function() { //select category page section
         regionFixer();
         var fromField = $('#create_name');
         var toField = $('#email');
-        $(fromField).on('input', function() {
-            inferEmailAddress(fromField, toField);
+        // $(fromField).on('input', function() { //changed from .on('input',...) to .on('keydown') to track specific kind of key presses
+        //     inferEmailAddress(fromField, toField);
+        // });
+        $(fromField).on('keydown', function(event) {
+            if (!(event.key === 'Backspace' || event.key === "Delete")) {
+                inferEmailAddress(fromField, toField);
+            }
         });
     }
     //below on 06/12/2024 - autoselect region
@@ -195,7 +200,7 @@ $(document).ready(function() { //select category page section
                 var toOutput = matchArr.join('.') + "@arkansas.gov";
                 if (matchArr.length > 1) {
                     if (!gotToLength) gotToLength = true;
-                    //if (!toastReady) toastReady = true;
+                    if (!toastReady) toastReady = true;
                     toField.val(toOutput.toLowerCase());
                     if (toastReady) {
                         showEmailToast();
@@ -203,6 +208,7 @@ $(document).ready(function() { //select category page section
                     }
                 }
                 else {
+                    if (toastReady) toastReady = false;
                     toField.val('');
                 }
             } else {
@@ -217,7 +223,7 @@ $(document).ready(function() { //select category page section
         var inputHeight = insertHere.outerHeight();
         var inputWidth = insertHere.outerWidth();
         var toastWidth = toInsert.outerWidth();
-        var viewportWidth = $(window).width();
+        //var viewportWidth = $(window).width();
 
         var topPos = offset.top + inputHeight;
         var leftPos = offset.left + (inputWidth / 2) - (toastWidth / 2);
