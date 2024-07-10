@@ -104,6 +104,7 @@ $(document).ready(function() { //select category page section
     var toInsert = $(`<div id='email-toast' class='toast'>Please double-check auto-generated email address for accuracy</div>`);
     $('body').append(toInsert);
     var insertHere = $('#email');
+    var lastKeyCheck = false;
     // setTimeout(function() {
     //     insertHere.after(toInsert);
     // }, 50);
@@ -137,13 +138,12 @@ $(document).ready(function() { //select category page section
         regionFixer();
         var fromField = $('#create_name');
         var toField = $('#email');
-        var lastKeyCheck = false;
         $(fromField).on('keydown', function(event) {
             //inferEmailAddress(fromField, toField);
             if (!(event.key === 'Backspace' || event.key === "Delete")) {
                 lastKeyCheck = true;
                 //inferEmailAddress(fromField, toField);
-            }
+            } else if (lastKeyCheck) lastKeyCheck = false;
         });
         $(fromField).on('input', function() { //added .on('keydown') to track specific kind of key presses
             inferEmailAddress(fromField, toField, lastKeyCheck);
