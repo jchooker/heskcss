@@ -228,8 +228,10 @@ $(document).ready(function() { //select category page section
         var toastWidth = toInsert.outerWidth();
         //var viewportWidth = $(window).width();
 
-        var topPos = offset.top + inputHeight;
-        var leftPos = offset.left + (inputWidth / 2) - (toastWidth / 2);
+        // var topPos = offset.top + inputHeight;
+        // var leftPos = offset.left + (inputWidth / 2) - (toastWidth / 2);
+        var topPos = offset.top;
+        var leftPos = offset.left + (inputWidth / 4) - (toastWidth / 2);
 
         toastElem.css({
             top: topPos + 'px',
@@ -241,6 +243,9 @@ $(document).ready(function() { //select category page section
 
         setTimeout(function() {
             toastElem.removeClass('show'); 
+            setTimeout(function() {
+                toInsert.remove();
+            }, 1000);
             toastReady = true;
         }, 3000);
 
