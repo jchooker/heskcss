@@ -13,8 +13,8 @@ $(document).ready(function() { //select category page section
     //console.log("DOM Loaded");
 
     var strsToMatch = {
-                "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)", "ges/Upd", "& R r"],
-                "complete":["Other", "359 Request", "DBA", "Installs", "Travel", "General Maintenance", "KnowBe4"]
+        "partial":["(i.e. Enviromental, Greenway, &", "AS-56 Mobile", "(non-359)", "ges/Upd", "& R r", "ing/escal"],
+        "complete":["Other", "359 Request", "DBA", "Installs", "Travel", "General Maintenance", "KnowBe4"]
     }
 
     const selText = '#select_category';
@@ -28,7 +28,7 @@ $(document).ready(function() { //select category page section
             selectizeControl.on('dropdown_open', () => {
 
                 updateOptionStyles(selectizeControl);
-
+                organizeOptions(); //10.14.2024
             });
 
             selectizeControl.on('change', () => {
@@ -45,6 +45,65 @@ $(document).ready(function() { //select category page section
      };
 
     checkSelectizeAvailability();
+
+    function organizeOptions() {
+        //having checked selectize availability already
+        const selectize = $('#select_category').selectize()[0].selectize;
+
+        const options = $.map(selectize.options, option => option);
+
+        const orangeOptions = [];
+        const nonOrangeOptions = [];
+
+        options.forEach(option => {
+            const optionElement = selectize.$dropdown_content.find(`[data-value="${option.value}"]`);
+            let currColor = optionElement.css('color');
+
+            if (currColor.includes('rgb')) {
+                currColor = rgbToHex(currColor);
+            }
+
+            if (currColor.toUpperCase() === newColor) {
+                orangeOptions.push(option);
+            } else {
+                nonOrangeOptions.push(option);
+            }
+        });
+
+        orangeOptions.sort((a, b) => a.text.localeCompare(b.text));
+        nonOrangeOptions.sort((a, b) => a.text.localeCompare(b.text));
+
+        const sortedOptions = orangeOptions.concat(nonOrangeOptions);
+
+        // const sortedOptions = $.map(selectize.options, option => option)
+        //     .sort((a, b) => {
+        //         const isAMatch = strsToMatch.partial.some(str => a.text.includes(str)) || strsToMatch.complete === a.text;
+        //         //^^some() method applies the test / conditions in the parantheses to the array invoking it
+        //         const isBMatch = strsToMatch.partial.some(str => b.text.includes(str)) || strsToMatch.complete === b.text;
+
+        //         if (isAMatch && !isBMatch) return -1;
+        //         if (!isAMatch && isBMatch) return 1;
+        //         return isAMatch ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text);
+        //     });
+
+        // const matchGroup = sortedOptions.filter(option => strsToMatch.partial.some(str => option.text.includes(str)) || strsToMatch.complete === option.text);
+        // const nonMatchGroup = sortedOptions.filter(option => !matchGroup.includes(option));
+        // matchGroup.sort((a, b) => a.text.localeCompare(b.text));
+        // nonMatchGroup.sort((a, b) => a.text.localeCompare(b.text));
+        // const organizedOptions = matchGroup.concat(nonMatchGroup);
+
+        selectize.clearOptions();
+        // $.each(organizedOptions, (index, option) => {
+        //     selectize.addOption(option);
+        //     if (matchGroup.includes(option)) {
+        //         selectize.$dropdown_content.find(`[data-value="${option.value}"]`).addClass('orange-text');
+        //     }
+        // });
+        $.each(sortedOptions, (index, option) => selectize.addOption(option));
+        selectize.refreshOptions(false);
+        
+
+    }
 
     function updateOptionStyles(selectizeControl) {
         console.log('updateOptionStyles() function accessed.');
@@ -105,14 +164,8 @@ $(document).ready(function() { //select category page section
     $('body').append(toInsert);
     var insertHere = $('#email');
     var lastKeyCheck = false;
-    // setTimeout(function() {
-    //     insertHere.after(toInsert);
-    // }, 50);
-    //insertHere.after(toInsert); <--07/10/2024 reactivate?
-    //$('#email-toast').addClass('toast');
     addStylesToToast();
     console.log($('#email-toast'))
-    //$('body').append(toInsert);
     var toastElem = $('#email-toast');
     var correctPageCheck = $('h3').filter(function() {
         return $(this).text().trim() === "Insert a new ticket";
@@ -236,6 +289,9 @@ $(document).ready(function() { //select category page section
 
         var topPos = offset.top + inputHeight;
         var leftPos = offset.left + (inputWidth / 4) - (toastWidth / 2);
+
+        console.log("Top position: " + topPos);
+        console.log("Left position: " + leftPos);
 
         // var topPos = offset.top;
         // var leftPos = offset.left + (inputWidth / 4) - (toastWidth / 2);
@@ -362,10 +418,6 @@ function partialTextMatch(element, searchText) {
         }
     }
     return null;
-}
-
-function matchRegion() {
-    $()
 }
 
 function privateCategoryFontColor(selPrefix1 = 'form[action="new_ticket.php"] .selectize-dropdown.single .selectize-dropdown-content', 
