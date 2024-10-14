@@ -55,52 +55,57 @@ $(document).ready(function() { //select category page section
         const orangeOptions = [];
         const nonOrangeOptions = [];
 
-        options.forEach(option => {
-            const optionElement = selectize.$dropdown_content.find(`[data-value="${option.value}"]`);
-            let currColor = optionElement.css('color');
-
-            if (currColor.includes('rgb')) {
-                currColor = rgbToHex(currColor);
-            }
-
-            if (currColor.toUpperCase() === newColor) {
-                orangeOptions.push(option);
-            } else {
-                nonOrangeOptions.push(option);
-            }
-        });
-
-        orangeOptions.sort((a, b) => a.text.localeCompare(b.text));
-        nonOrangeOptions.sort((a, b) => a.text.localeCompare(b.text));
-
-        const sortedOptions = orangeOptions.concat(nonOrangeOptions);
-
-        // const sortedOptions = $.map(selectize.options, option => option)
-        //     .sort((a, b) => {
-        //         const isAMatch = strsToMatch.partial.some(str => a.text.includes(str)) || strsToMatch.complete === a.text;
-        //         //^^some() method applies the test / conditions in the parantheses to the array invoking it
-        //         const isBMatch = strsToMatch.partial.some(str => b.text.includes(str)) || strsToMatch.complete === b.text;
-
-        //         if (isAMatch && !isBMatch) return -1;
-        //         if (!isAMatch && isBMatch) return 1;
-        //         return isAMatch ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text);
-        //     });
-
-        // const matchGroup = sortedOptions.filter(option => strsToMatch.partial.some(str => option.text.includes(str)) || strsToMatch.complete === option.text);
-        // const nonMatchGroup = sortedOptions.filter(option => !matchGroup.includes(option));
-        // matchGroup.sort((a, b) => a.text.localeCompare(b.text));
-        // nonMatchGroup.sort((a, b) => a.text.localeCompare(b.text));
-        // const organizedOptions = matchGroup.concat(nonMatchGroup);
-
-        selectize.clearOptions();
-        // $.each(organizedOptions, (index, option) => {
-        //     selectize.addOption(option);
-        //     if (matchGroup.includes(option)) {
-        //         selectize.$dropdown_content.find(`[data-value="${option.value}"]`).addClass('orange-text');
-        //     }
-        // });
-        $.each(sortedOptions, (index, option) => selectize.addOption(option));
-        selectize.refreshOptions(false);
+        try {
+            options.forEach(option => {
+                const optionElement = selectize.$dropdown_content.find(`[data-value="${option.value}"]`);
+                let currColor = optionElement.css('color');
+                if (!currColor) throw new Error("option value color not available!");
+    
+                if (currColor.includes('rgb')) {
+                    currColor = rgbToHex(currColor);
+                }
+    
+                if (currColor.toUpperCase() === newColor) {
+                    orangeOptions.push(option);
+                } else {
+                    nonOrangeOptions.push(option);
+                }
+            });
+            orangeOptions.sort((a, b) => a.text.localeCompare(b.text));
+            nonOrangeOptions.sort((a, b) => a.text.localeCompare(b.text));
+    
+            const sortedOptions = orangeOptions.concat(nonOrangeOptions);
+    
+            // const sortedOptions = $.map(selectize.options, option => option)
+            //     .sort((a, b) => {
+            //         const isAMatch = strsToMatch.partial.some(str => a.text.includes(str)) || strsToMatch.complete === a.text;
+            //         //^^some() method applies the test / conditions in the parantheses to the array invoking it
+            //         const isBMatch = strsToMatch.partial.some(str => b.text.includes(str)) || strsToMatch.complete === b.text;
+    
+            //         if (isAMatch && !isBMatch) return -1;
+            //         if (!isAMatch && isBMatch) return 1;
+            //         return isAMatch ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text);
+            //     });
+    
+            // const matchGroup = sortedOptions.filter(option => strsToMatch.partial.some(str => option.text.includes(str)) || strsToMatch.complete === option.text);
+            // const nonMatchGroup = sortedOptions.filter(option => !matchGroup.includes(option));
+            // matchGroup.sort((a, b) => a.text.localeCompare(b.text));
+            // nonMatchGroup.sort((a, b) => a.text.localeCompare(b.text));
+            // const organizedOptions = matchGroup.concat(nonMatchGroup);
+    
+            selectize.clearOptions();
+            // $.each(organizedOptions, (index, option) => {
+            //     selectize.addOption(option);
+            //     if (matchGroup.includes(option)) {
+            //         selectize.$dropdown_content.find(`[data-value="${option.value}"]`).addClass('orange-text');
+            //     }
+            // });
+            $.each(sortedOptions, (index, option) => selectize.addOption(option));
+            selectize.refreshOptions(false);
+        }
+        catch (err) {
+            alert(err);
+        }
         
 
     }
