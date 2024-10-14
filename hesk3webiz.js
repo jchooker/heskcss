@@ -59,7 +59,7 @@ $(document).ready(function() { //select category page section
             options.forEach(option => {
                 const optionElement = selectize.$dropdown_content.find(`[data-value="${option.value}"]`);
                 let currColor = optionElement.css('color');
-                if (!currColor) throw new Error("option value color not available!");
+                //if (!currColor) throw new Error("option value color not available!");
     
                 if (currColor.includes('rgb')) {
                     currColor = rgbToHex(currColor);
