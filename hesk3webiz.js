@@ -48,17 +48,18 @@ $(document).ready(function() { //select category page section
 
     function organizeOptions(selectizeControl) {
         //having checked selectize availability already
-        const selectized = $(selText).selectize()[0].selectize;
-        console.log(`selectized content: ${selectized}`);
+        //const selectized = $(selText).selectize()[0].selectize;
+        console.log(`selectized content: ${selectizeControl}`);
 
-        const options = $.map(selectized.options, option => option);
+        //const options = $.map(selectized.options, option => option);
+        const options = Object.values(selectizeControl.options);
 
         const orangeOptions = [];
         const nonOrangeOptions = [];
 
         try {
-            options.each(function(option) {
-                const optionElement = selectized.$dropdown_content.find(`[data-value="${option.value}"]`);
+            $(options).each(function(option) {
+                const optionElement = selectizeControl.$dropdown_content.find(`[data-value="${option.value}"]`);
                 let currColor = optionElement.css('color');
                 //if (!currColor) throw new Error("option value color not available!");
     
@@ -77,9 +78,9 @@ $(document).ready(function() { //select category page section
     
             const sortedOptions = orangeOptions.concat(nonOrangeOptions);
     
-            selectized.clearOptions();
-            $.each(sortedOptions, (index, option) => selectized.addOption(option));
-            selectized.refreshOptions(false);
+            selectizeControl.clearOptions();
+            $.each(sortedOptions, (index, option) => selectizeControl.addOption(option));
+            selectizeControl.refreshOptions(false);
         }
         catch (err) {
             alert(err);
