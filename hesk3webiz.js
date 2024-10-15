@@ -56,9 +56,12 @@ $(document).ready(function() { //select category page section
                 selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
                 selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
     
-                selectizeControl.options.forEach((option) => {
-                    if ($(option.$order).hasClass('orange-group')) {
-                        option.optgroup = 'orange-group';
+                Object.keys(selectizeControl.options).forEach((key) => {
+                    const option = selectizeControl.options[key];
+                    if (option && option.$order) {
+                        if ($(option.$order).hasClass('orange-group')) {
+                            option.optgroup = 'orange-group';
+                        }
                     } else {
                         option.optgroup = 'non-orange-group';
                     }
