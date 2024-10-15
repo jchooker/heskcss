@@ -51,27 +51,26 @@ $(document).ready(function() { //select category page section
         //const selectized = $(selText).selectize()[0].selectize;
         console.log(`selectized content: ${selectizeControl}`);
         try {
-            if (selText.length > 0 && selText[0].selectize) {
-                const selectizeCtrl = selText[0].selectize;
+            if (selText.length > 0 && selectizeControl) {
     
-                selectizeCtrl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
-                selectizeCtrl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+                selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
+                selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
     
-                selectizeCtrl.options.forEach((option) => {
+                selectizeControl.options.forEach((option) => {
                     if ($(option.$order).hasClass('orange-group')) {
                         option.optgroup = 'orange-group';
                     } else {
                         option.optgroup = 'non-orange-group';
                     }
-                    selectizeCtrl.updateOption(option.value, option);
+                    selectizeControl.updateOption(option.value, option);
                 });
     
-                selectizeCtrl.settings.sortField = {
+                selectizeControl.settings.sortField = {
                     field: 'text', //sort by option txt
                     direction: 'asc'
                 };
     
-                selectizeCtrl.refreshOptions(false);
+                selectizeControl.refreshOptions(false);
     
             }
         } catch (err) {
