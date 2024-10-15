@@ -28,7 +28,7 @@ $(document).ready(function() { //select category page section
             selectizeControl.on('dropdown_open', () => {
 
                 updateOptionStyles(selectizeControl);
-                organizeOptions(); //10.14.2024
+                organizeOptions(selectizeControl); //10.14.2024
             });
 
             selectizeControl.on('change', () => {
@@ -46,19 +46,19 @@ $(document).ready(function() { //select category page section
 
     checkSelectizeAvailability();
 
-    function organizeOptions() {
-        console.log('organizeOptions() intialized');
+    function organizeOptions(selectizeControl) {
         //having checked selectize availability already
-        const selectize = $('#select_category').selectize()[0].selectize;
+        const selectized = $(selText).selectize()[0].selectize;
+        console.log(`selectized content: ${selectized}`);
 
-        const options = $.map(selectize.options, option => option);
+        const options = $.map(selectized.options, option => option);
 
         const orangeOptions = [];
         const nonOrangeOptions = [];
 
         try {
-            options.forEach(option => {
-                const optionElement = selectize.$dropdown_content.find(`[data-value="${option.value}"]`);
+            options.each(function(option) {
+                const optionElement = selectized.$dropdown_content.find(`[data-value="${option.value}"]`);
                 let currColor = optionElement.css('color');
                 //if (!currColor) throw new Error("option value color not available!");
     
@@ -77,9 +77,9 @@ $(document).ready(function() { //select category page section
     
             const sortedOptions = orangeOptions.concat(nonOrangeOptions);
     
-            selectize.clearOptions();
-            $.each(sortedOptions, (index, option) => selectize.addOption(option));
-            selectize.refreshOptions(false);
+            selectized.clearOptions();
+            $.each(sortedOptions, (index, option) => selectized.addOption(option));
+            selectized.refreshOptions(false);
         }
         catch (err) {
             alert(err);
