@@ -75,7 +75,7 @@ $(document).ready(function() { //select category page section
                 console.log('Updated options:', selectizeControl.options);
     
                 selectizeControl.refreshOptions(false);
-    
+                logOptgroupContents(selectizeControl);
             }
         } catch (err) {
             console.warn(err);
@@ -126,6 +126,37 @@ $(document).ready(function() { //select category page section
         // }
         
 
+    }
+
+    function logOptgroupContents(selectizeControl) {
+        if (selectizeControl) {
+            // Initialize an object to store options by their optgroup
+            const optgroupMap = {};
+    
+            // Iterate over all options and group them by their 'optgroup' property
+            Object.keys(selectizeControl.options).forEach((key) => {
+                const option = selectizeControl.options[key];
+    
+                // If the option has an optgroup, use it; otherwise, categorize as 'none'
+                const optgroup = option.optgroup || 'none';
+    
+                // Initialize the optgroup array if it doesn't exist in the map
+                if (!optgroupMap[optgroup]) {
+                    optgroupMap[optgroup] = [];
+                }
+    
+                // Add the current option to the corresponding optgroup
+                optgroupMap[optgroup].push(option);
+            });
+    
+            // Log the contents of each optgroup
+            Object.keys(optgroupMap).forEach((optgroup) => {
+                console.log(`Optgroup: ${optgroup}`);
+                optgroupMap[optgroup].forEach((option) => {
+                    console.log(`  - Option value: ${option.value}, text: ${option.text}`);
+                });
+            });
+        }
     }
 
     function updateOptionStyles(selectizeControl) {
