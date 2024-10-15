@@ -58,6 +58,7 @@ $(document).ready(function() { //select category page section
     
                 Object.keys(selectizeControl.options).forEach((key) => {
                     const option = selectizeControl.options[key];
+
                     if (option && option.$order) {
                         if ($(option.$order).hasClass('orange-group')) {
                             option.optgroup = 'orange-group';
@@ -137,6 +138,9 @@ $(document).ready(function() { //select category page section
             Object.keys(selectizeControl.options).forEach((key) => {
                 const option = selectizeControl.options[key];
     
+                // Log the entire option object to see its properties
+                console.log('Option Object:', option);
+    
                 // If the option has an optgroup, use it; otherwise, categorize as 'none'
                 const optgroup = option.optgroup || 'none';
     
@@ -153,7 +157,8 @@ $(document).ready(function() { //select category page section
             Object.keys(optgroupMap).forEach((optgroup) => {
                 console.log(`Optgroup: ${optgroup}`);
                 optgroupMap[optgroup].forEach((option) => {
-                    console.log(`  - Option value: ${option.value}, text: ${option.text}`);
+                    // Access the properties of the option correctly
+                    console.log(`  - Option value: ${option.id || option.value || 'N/A'}, text: ${option.text || option.label || 'N/A'}`);
                 });
             });
         }
