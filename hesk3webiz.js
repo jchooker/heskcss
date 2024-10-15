@@ -60,14 +60,18 @@ $(document).ready(function() { //select category page section
         try {
             $(options).each(function(option) {
                 const optionElement = selectizeControl.$dropdown_content.find(`[data-value="${option.value}"]`);
+                if (optionElement.length === 0) {
+                    console.warn(`Option element for value ${option.value} not found.`);
+                    return;
+                }
                 let currColor = optionElement.css('color');
                 //if (!currColor) throw new Error("option value color not available!");
     
-                if (currColor.includes('rgb')) {
+                if (currColor && currColor.includes('rgb')) {
                     currColor = rgbToHex(currColor);
                 }
     
-                if (currColor.toUpperCase() === newColor) {
+                if (currColor && currColor.toUpperCase() === newColor) {
                     orangeOptions.push(option);
                 } else {
                     nonOrangeOptions.push(option);
