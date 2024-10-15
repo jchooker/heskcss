@@ -50,45 +50,77 @@ $(document).ready(function() { //select category page section
         //having checked selectize availability already
         //const selectized = $(selText).selectize()[0].selectize;
         console.log(`selectized content: ${selectizeControl}`);
+        try {
+            if (selText.length > 0 && selText[0].selectize) {
+                const selectizeCtrl = selText[0].selectize;
+    
+                selectizeCtrl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
+                selectizeCtrl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+    
+                selectizeCtrl.options.forEach((option) => {
+                    if ($(option.$order).hasClass('orange-group')) {
+                        option.optgroup = 'orange-group';
+                    } else {
+                        option.optgroup = 'non-orange-group';
+                    }
+                    selectizeCtrl.updateOption(option.value, option);
+                });
+    
+                selectizeCtrl.settings.sortField = {
+                    field: 'text', //sort by option txt
+                    direction: 'asc'
+                };
+    
+                selectizeCtrl.refreshOptions(false);
+    
+            }
+        } catch (err) {
+            console.warn(err);
+        }
 
         //const options = $.map(selectized.options, option => option);
-        const options = Object.values(selectizeControl.options);
+        //***BEGIN V1 -A */
+        //const options = Object.values(selectizeControl.options);
 
-        const orangeOptions = [];
-        const nonOrangeOptions = [];
+        // const orangeOptions = [];
+        // const nonOrangeOptions = [];
+        //***END V1 -A */
 
-        try {
-            $(options).each(function(option) {
-                const optionElement = selectizeControl.$dropdown_content.find(`[data-value="${option.value}"]`);
-                if (optionElement.length === 0) {
-                    console.warn(`Option element for value ${option.value} not found.`);
-                    return;
-                }
-                let currColor = optionElement.css('color');
-                //if (!currColor) throw new Error("option value color not available!");
+
+        // try {
+            //***BEGIN V 1-B FOLLOWS */
+            // $(options).each(function(option) {
+            //     const optionElement = selectizeControl.$dropdown_content.find(`[data-value="${option.value}"]`);
+            //     if (optionElement.length === 0) {
+            //         console.warn(`Option element for value ${option.value} not found.`);
+            //         return;
+            //     }
+            //     let currColor = optionElement.css('color');
+            //     //if (!currColor) throw new Error("option value color not available!");
     
-                if (currColor && currColor.includes('rgb')) {
-                    currColor = rgbToHex(currColor);
-                }
+            //     if (currColor && currColor.includes('rgb')) {
+            //         currColor = rgbToHex(currColor);
+            //     }
     
-                if (currColor && currColor.toUpperCase() === newColor) {
-                    orangeOptions.push(option);
-                } else {
-                    nonOrangeOptions.push(option);
-                }
-            });
-            orangeOptions.sort((a, b) => a.text.localeCompare(b.text));
-            nonOrangeOptions.sort((a, b) => a.text.localeCompare(b.text));
+            //     if (currColor && currColor.toUpperCase() === newColor) {
+            //         orangeOptions.push(option);
+            //     } else {
+            //         nonOrangeOptions.push(option);
+            //     }
+            // });
+            // orangeOptions.sort((a, b) => a.text.localeCompare(b.text));
+            // nonOrangeOptions.sort((a, b) => a.text.localeCompare(b.text));
     
-            const sortedOptions = orangeOptions.concat(nonOrangeOptions);
+            // const sortedOptions = orangeOptions.concat(nonOrangeOptions);
     
-            selectizeControl.clearOptions();
-            $.each(sortedOptions, (index, option) => selectizeControl.addOption(option));
-            selectizeControl.refreshOptions(false);
-        }
-        catch (err) {
-            alert(err);
-        }
+            // selectizeControl.clearOptions();
+            // $.each(sortedOptions, (index, option) => selectizeControl.addOption(option));
+            // selectizeControl.refreshOptions(false);
+            //***END V1-B */
+        // }
+        // catch (err) {
+        //     alert(err);
+        // }
         
 
     }
@@ -106,6 +138,7 @@ $(document).ready(function() { //select category page section
                 if (shouldApplyOrangeText(text) && currColor.toUpperCase() !== newColor) {//it's rgb but we'll cover 
                                                                                 //that edge
                     optionElement.css('color', newColor);                       //case anyway
+                    optionElement.addClass('orange-group');
                 }
             });
         } catch (error) {
