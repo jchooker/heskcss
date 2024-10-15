@@ -72,6 +72,7 @@ $(document).ready(function() { //select category page section
                     field: 'text', //sort by option txt
                     direction: 'asc'
                 };
+                console.log('Updated options:', selectizeControl.options);
     
                 selectizeControl.refreshOptions(false);
     
@@ -140,6 +141,7 @@ $(document).ready(function() { //select category page section
                 if (shouldApplyOrangeText(text) && currColor.toUpperCase() !== newColor) {//it's rgb but we'll cover 
                                                                                 //that edge
                     optionElement.css('color', newColor);                       //case anyway
+                    console.log(`Adding class 'orange-group' to option with text: ${text}`);
                     optionElement.addClass('orange-group');
                 }
             });
