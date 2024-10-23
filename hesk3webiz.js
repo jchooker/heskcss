@@ -78,9 +78,13 @@ $(document).ready(function() { //select category page section
                 // };
                 // console.log('Updated options:', selectizeControl.options);
                 var orangeGroup = $(selText).find('optgroup.orange-group');
-                console.log(`^^^^^CHECKING GROUPS 1: ${orangeGroup}`);
+                orangeGroup.each(function(index, option) {
+                    console.log(`^^^^^CHECKING GROUPS 1: ${option}`);
+                });
                 var nonOrangeGroup = $(selText).find('optgroup.non-orange-group');
-                console.log(`&&&&CHECKING GROUPS 2: ${nonOrangeGroup}`);
+                nonOrangeGroup.each(function(index, option) {
+                    console.log(`&&&&CHECKING GROUPS 2: ${option}`);
+                });
 
                 alphabeticalSort(orangeGroup);
                 alphabeticalSort(nonOrangeGroup);
