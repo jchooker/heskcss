@@ -52,7 +52,8 @@ $(document).ready(function() { //select category page section
         console.log(`selectized content: ${selectizeControl}`);
         try {
             if (selText.length > 0 && selectizeControl) {
-    
+                
+                $(selText).selectize({ sortField: 'text' })
                 selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
                 selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
 
