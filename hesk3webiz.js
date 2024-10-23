@@ -158,11 +158,15 @@ $(document).ready(function() { //select category page section
                 let text = optionElement.text().trim();
                 var currColor = optionElement.css('color'); //check current color & compare to desired color
                 if (currColor.includes('rgb')) currColor = rgbToHex(currColor); //there might be no scenario where
-                if (shouldApplyOrangeText(text) && currColor.toUpperCase() !== newColor) {//it's rgb but we'll cover 
+                if (shouldApplyOrangeText(text)) {//it's rgb but we'll cover 
                                                                                 //that edge
-                    optionElement.css('color', newColor);                       //case anyway
-                    console.log(`Adding class 'orange-group' to option with text: ${text}`);
-                    optionElement.addClass('orange-group');
+                    if (currColor.toUpperCase() !== newColor) {
+                        optionElement.css('color', newColor);                       //case anyway
+                        console.log(`Adding class 'orange-group' to option with text: ${text}`);
+                        optionElement.addClass('orange-group');
+                    }
+                } else {
+                    optionElement.addClass('non-orange-group');
                 }
             });
         } catch (error) {
