@@ -49,7 +49,6 @@ $(document).ready(function() { //select category page section
     function organizeOptions(selectizeControl) {
         //having checked selectize availability already
         //const selectized = $(selText).selectize()[0].selectize;
-        console.log(`selectized content: ${selectizeControl}`);
         try {
             if (selText.length > 0 && selectizeControl) {
                 
@@ -109,6 +108,9 @@ $(document).ready(function() { //select category page section
 
     function alphabeticalSort($colorGroup) {
         var $options = $colorGroup.find('option');
+        $options.each(function (i, j) {
+            console.log(j);
+        });
 
         $options.sort(function(a, b) {
             return $(a).text().localeCompare($(b).text());
