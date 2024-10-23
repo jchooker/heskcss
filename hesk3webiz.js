@@ -84,7 +84,14 @@ $(document).ready(function() { //select category page section
                 // console.log('Updated options:', selectizeControl.options);
                 var orangeGroup = $(selText).find('.orange-group');
                 if (orangeGroup.length > 0) console.log('orangeGroup FOUND!!!');
-                else console.log('DID &&&&&&&& NOT FIND ORANGE GROUP!');
+                else {
+                    console.log('DID &&&&&&&& NOT FIND ORANGE GROUP!');
+                    setTimeout(function() {
+                        var orangeGroup = $(selText).find('.orange-group');
+                        if (orangeGroup.length > 0) console.log('orangeGroup found after delay!!!!!!!!!!!');
+                        else console.log('orangeGroup NOT FOUND after delay!!!@!!@!@');
+                    }, 50);
+                }
                 orangeGroup.each(function(index, optgroup) {
                     console.log(`^^^^^CHECKING GROUPS 1: ${$(optgroup).attr('label')}`);
                 });
