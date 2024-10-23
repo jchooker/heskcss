@@ -50,68 +50,65 @@ $(document).ready(function() { //select category page section
         //having checked selectize availability already
         //const selectized = $(selText).selectize()[0].selectize;
         try {
-            if (selText.length > 0 && selectizeControl) {
+            var options = selectizeControl.options;
+
+            var sortedOptions = Object.keys(options)
+                .map(function(key) {
+                    return options[key];
+                })
+                .sort(function(a, b) {
+                    return a.text.localeCompare(b.text);
+                });
+
+            selectizeControl.clearOptions();
+
+            sortedOptions.forEach(function(option) {
+                selectizeControl.addOption(option);
+            });
+            // if (selText.length > 0 && selectizeControl) {
                 
-                $(selText).selectize({ sortField: 'text' })
-                try {
-                    selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
-                    selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
-                    console.log($`((((((((((((ADDED OPTION GROUP TO SELECTIZE!!!!))))))))))))`);
-                } catch (err) {
-                    console.log($`))))))))))error adding option group to selectize control!!!`);
-                }
+            //     $(selText).selectize({ sortField: 'text' })
+            //     try {
+            //         selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
+            //         selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+            //         console.log($`((((((((((((ADDED OPTION GROUP TO SELECTIZE!!!!))))))))))))`);
+            //     } catch (err) {
+            //         console.log($`))))))))))error adding option group to selectize control!!!`);
+            //     }
 
-                console.log($('.orange-group'));
-                console.log($('.non-orange-group'));
+            //     console.log($('.orange-group'));
+            //     console.log($('.non-orange-group'));
     
-                // Object.keys(selectizeControl.options).forEach((key) => {
-                //     const option = selectizeControl.options[key];
-
-                //     if (option && option.$order) {
-                //         if ($(option.$order).hasClass('orange-group')) {
-                //             option.optgroup = 'orange-group';
-                //         }
-                //     } else {
-                //         option.optgroup = 'non-orange-group';
-                //     }
-                //     selectizeControl.updateOption(option.value, option);
-                // });
-    
-                // selectizeControl.settings.sortField = {
-                //     field: 'text', //sort by option txt
-                //     direction: 'asc'
-                // };
-                // console.log('Updated options:', selectizeControl.options);
-                var orangeGroup = selectizeControl.$dropdown_content.find('.orange-group');
-                if (orangeGroup.length > 0) console.log('orangeGroup FOUND!!!');
-                else {
-                    console.log('DID &&&&&&&& NOT FIND ORANGE GROUP!');
-                    setTimeout(function() {
-                        var orangeGroup = $(selText).find('.orange-group');
-                        if (orangeGroup.length > 0) console.log('orangeGroup found after delay!!!!!!!!!!!');
-                        else console.log('orangeGroup NOT FOUND after delay!!!@!!@!@');
-                    }, 50);
-                }
+            //     var orangeGroup = selectizeControl.$dropdown_content.find('.orange-group');
+            //     if (orangeGroup.length > 0) console.log('orangeGroup FOUND!!!');
+            //     else {
+            //         console.log('DID &&&&&&&& NOT FIND ORANGE GROUP!');
+            //         setTimeout(function() {
+            //             var orangeGroup = $(selText).find('.orange-group');
+            //             if (orangeGroup.length > 0) console.log('orangeGroup found after delay!!!!!!!!!!!');
+            //             else console.log('orangeGroup NOT FOUND after delay!!!@!!@!@');
+            //         }, 50);
+            //     }
                 // orangeGroup.each(function(index, optgroup) {
                 //     console.log(`^^^^^CHECKING GROUPS 1: ${$(optgroup).attr('label')}`);
                 // });
-                var nonOrangeGroup = selectizeControl.$dropdown_content.find('.non-orange-group');
-                if (nonOrangeGroup.length > 0) console.log('nonOrangeGroup FOUND!!!!');
-                else console.log('DID ******* NOT FIND NOT ORANGE GROUP!');
+                // var nonOrangeGroup = selectizeControl.$dropdown_content.find('.non-orange-group');
+                // if (nonOrangeGroup.length > 0) console.log('nonOrangeGroup FOUND!!!!');
+                // else console.log('DID ******* NOT FIND NOT ORANGE GROUP!');
                 // nonOrangeGroup.each(function(index, optgroup) {
                 //     console.log(`&&&&CHECKING GROUPS 2: ${$(optgroup).attr('label')}`);
                 // });
 
-                alphabeticalSort(orangeGroup);
-                alphabeticalSort(nonOrangeGroup);
+                // alphabeticalSort(orangeGroup);
+                // alphabeticalSort(nonOrangeGroup);
 
-                $(selText).empty();
-                $(selText).append(orangeGroup);
-                $(selText).append(nonOrangeGroup);
+                // $(selText).empty();
+                // $(selText).append(orangeGroup);
+                // $(selText).append(nonOrangeGroup);
     
                 selectizeControl.refreshOptions(false);
                 logOptgroupContents(selectizeControl);
-            }
+            // }
         } catch (err) {
             console.warn(err);
         }
