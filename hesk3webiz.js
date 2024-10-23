@@ -56,6 +56,7 @@ $(document).ready(function() { //select category page section
                 try {
                     selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
                     selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+                    console.log($`((((((((((((ADDED OPTION GROUP TO SELECTIZE!!!!))))))))))))`);
                 } catch (err) {
                     console.log($`))))))))))error adding option group to selectize control!!!`);
                 }
