@@ -57,25 +57,35 @@ $(document).ready(function() { //select category page section
                 selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
 
                 console.log($('.orange-group'));
+                console.log($('.non-orange-group'));
     
-                Object.keys(selectizeControl.options).forEach((key) => {
-                    const option = selectizeControl.options[key];
+                // Object.keys(selectizeControl.options).forEach((key) => {
+                //     const option = selectizeControl.options[key];
 
-                    if (option && option.$order) {
-                        if ($(option.$order).hasClass('orange-group')) {
-                            option.optgroup = 'orange-group';
-                        }
-                    } else {
-                        option.optgroup = 'non-orange-group';
-                    }
-                    selectizeControl.updateOption(option.value, option);
-                });
+                //     if (option && option.$order) {
+                //         if ($(option.$order).hasClass('orange-group')) {
+                //             option.optgroup = 'orange-group';
+                //         }
+                //     } else {
+                //         option.optgroup = 'non-orange-group';
+                //     }
+                //     selectizeControl.updateOption(option.value, option);
+                // });
     
-                selectizeControl.settings.sortField = {
-                    field: 'text', //sort by option txt
-                    direction: 'asc'
-                };
-                console.log('Updated options:', selectizeControl.options);
+                // selectizeControl.settings.sortField = {
+                //     field: 'text', //sort by option txt
+                //     direction: 'asc'
+                // };
+                // console.log('Updated options:', selectizeControl.options);
+                var $orangeGroup = $(selText).find('optgroup.orange-group');
+                var $nonOrangeGroup = $(selText).find('optgroup.non-orange-group');
+
+                alphabeticalSort($orangeGroup);
+                alphabeticalSort($nonOrangeGroup);
+
+                $(selText).empty();
+                $(selText).append($orangeGroup);
+                $(selText).append($nonOrangeGroup);
     
                 selectizeControl.refreshOptions(false);
                 logOptgroupContents(selectizeControl);
@@ -84,49 +94,16 @@ $(document).ready(function() { //select category page section
             console.warn(err);
         }
 
-        //const options = $.map(selectized.options, option => option);
-        //***BEGIN V1 -A */
-        //const options = Object.values(selectizeControl.options);
+    }
 
-        // const orangeOptions = [];
-        // const nonOrangeOptions = [];
-        //***END V1 -A */
+    function alphabeticalSort($colorGroup) {
+        var $options = $colorGroup.find('option');
 
+        $options.sort(function(a, b) {
+            return $(a).text().localeCompare($(b).text());
+        });
 
-        // try {
-            //***BEGIN V 1-B FOLLOWS */
-            // $(options).each(function(option) {
-            //     const optionElement = selectizeControl.$dropdown_content.find(`[data-value="${option.value}"]`);
-            //     if (optionElement.length === 0) {
-            //         console.warn(`Option element for value ${option.value} not found.`);
-            //         return;
-            //     }
-            //     let currColor = optionElement.css('color');
-            //     //if (!currColor) throw new Error("option value color not available!");
-    
-            //     if (currColor && currColor.includes('rgb')) {
-            //         currColor = rgbToHex(currColor);
-            //     }
-    
-            //     if (currColor && currColor.toUpperCase() === newColor) {
-            //         orangeOptions.push(option);
-            //     } else {
-            //         nonOrangeOptions.push(option);
-            //     }
-            // });
-            // orangeOptions.sort((a, b) => a.text.localeCompare(b.text));
-            // nonOrangeOptions.sort((a, b) => a.text.localeCompare(b.text));
-    
-            // const sortedOptions = orangeOptions.concat(nonOrangeOptions);
-    
-            // selectizeControl.clearOptions();
-            // $.each(sortedOptions, (index, option) => selectizeControl.addOption(option));
-            // selectizeControl.refreshOptions(false);
-            //***END V1-B */
-        // }
-        // catch (err) {
-        //     alert(err);
-        // }
+        $colorGroup.empty().append($options);
     }
 
     function logOptgroupContents(selectizeControl) {
