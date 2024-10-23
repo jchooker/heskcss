@@ -108,9 +108,13 @@ $(document).ready(function() { //select category page section
 
     function alphabeticalSort($colorGroup) {
         var $options = $colorGroup.find('option');
-        $options.each(function (i, j) {
-            console.log(j);
-        });
+        if ($options.length > 0) {
+            $options.each(function (i, j) {
+                console.log(j);
+            });
+        } else {
+            console.log(`******************OPTIONS $$ NOT FOUND!!!`);
+        }
 
         $options.sort(function(a, b) {
             return $(a).text().localeCompare($(b).text());
