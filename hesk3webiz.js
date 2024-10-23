@@ -95,7 +95,7 @@ $(document).ready(function() { //select category page section
                 orangeGroup.each(function(index, optgroup) {
                     console.log(`^^^^^CHECKING GROUPS 1: ${$(optgroup).attr('label')}`);
                 });
-                var nonOrangeGroup = $(selText).find('.non-orange-group');
+                var nonOrangeGroup = selectizeControl.$dropdown_content.find('.non-orange-group');
                 if (nonOrangeGroup.length > 0) console.log('nonOrangeGroup FOUND!!!!');
                 else console.log('DID ******* NOT FIND NOT ORANGE GROUP!');
                 nonOrangeGroup.each(function(index, optgroup) {
