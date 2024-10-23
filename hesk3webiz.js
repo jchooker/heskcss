@@ -119,10 +119,10 @@ $(document).ready(function() { //select category page section
     }
 
     function alphabeticalSort($colorGroup) {
-        var $options = $colorGroup.find('option');
+        var $options = $colorGroup.find('.option');
         if ($options.length > 0) {
-            $options.each(function (i, j) {
-                console.log(j);
+            $options.each(function () {
+                console.log($(this));
             });
         } else {
             console.log(`******************OPTIONS $$ NOT FOUND!!!`);
