@@ -78,12 +78,12 @@ $(document).ready(function() { //select category page section
                 // };
                 // console.log('Updated options:', selectizeControl.options);
                 var orangeGroup = $(selText).find('optgroup.orange-group');
-                orangeGroup.each(function(index, option) {
-                    console.log(`^^^^^CHECKING GROUPS 1: ${option}`);
+                orangeGroup.each(function(index, optgroup) {
+                    console.log(`^^^^^CHECKING GROUPS 1: ${$(optgroup).attr('label')}`);
                 });
                 var nonOrangeGroup = $(selText).find('optgroup.non-orange-group');
-                nonOrangeGroup.each(function(index, option) {
-                    console.log(`&&&&CHECKING GROUPS 2: ${option}`);
+                nonOrangeGroup.each(function(index, optgroup) {
+                    console.log(`&&&&CHECKING GROUPS 2: ${$(optgroup).attr('label')}`);
                 });
 
                 alphabeticalSort(orangeGroup);
