@@ -82,7 +82,7 @@ $(document).ready(function() { //select category page section
                 //     direction: 'asc'
                 // };
                 // console.log('Updated options:', selectizeControl.options);
-                var orangeGroup = $(selText).find('.orange-group');
+                var orangeGroup = selectizeControl.find('.orange-group');
                 if (orangeGroup.length > 0) console.log('orangeGroup FOUND!!!');
                 else {
                     console.log('DID &&&&&&&& NOT FIND ORANGE GROUP!');
