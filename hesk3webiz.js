@@ -102,7 +102,7 @@ $(document).ready(function() { //select category page section
         $options.sort(function(a, b) {
             return $(a).text().localeCompare($(b).text());
         });
-        $($options).each(function(index, option) {
+        $options.each(function(index, option) {
             console.log($`OPTGROUP SORT: ${$(option).val()}`);
         });
 
