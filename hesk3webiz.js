@@ -55,6 +55,8 @@ $(document).ready(function() { //select category page section
     
                 selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
                 selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+
+                console.log($('.orange-group'));
     
                 Object.keys(selectizeControl.options).forEach((key) => {
                     const option = selectizeControl.options[key];
@@ -125,8 +127,6 @@ $(document).ready(function() { //select category page section
         // catch (err) {
         //     alert(err);
         // }
-        
-
     }
 
     function logOptgroupContents(selectizeControl) {
