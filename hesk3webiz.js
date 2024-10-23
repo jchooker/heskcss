@@ -77,15 +77,15 @@ $(document).ready(function() { //select category page section
                 //     direction: 'asc'
                 // };
                 // console.log('Updated options:', selectizeControl.options);
-                var $orangeGroup = $(selText).find('optgroup.orange-group');
-                var $nonOrangeGroup = $(selText).find('optgroup.non-orange-group');
+                var orangeGroup = $(selText).find('optgroup.orange-group');
+                var nonOrangeGroup = $(selText).find('optgroup.non-orange-group');
 
-                alphabeticalSort($orangeGroup);
-                alphabeticalSort($nonOrangeGroup);
+                alphabeticalSort(orangeGroup);
+                alphabeticalSort(nonOrangeGroup);
 
                 $(selText).empty();
-                $(selText).append($orangeGroup);
-                $(selText).append($nonOrangeGroup);
+                $(selText).append(orangeGroup);
+                $(selText).append(nonOrangeGroup);
     
                 selectizeControl.refreshOptions(false);
                 logOptgroupContents(selectizeControl);
@@ -102,9 +102,13 @@ $(document).ready(function() { //select category page section
         $options.sort(function(a, b) {
             return $(a).text().localeCompare($(b).text());
         });
-        $options.each(function(index, option) {
-            console.log($`OPTGROUP SORT: ${$(option).val()}`);
-        });
+        try {
+            $options.each(function(index, option) {
+                console.log($`OPTGROUP SORT: ${$(option).val()}`);
+            });
+        } catch (err) {
+            console.log(`PRINTING OPTIONS FROM OPTGROUPS FAILED!: ${err}`);
+        }
 
         $colorGroup.empty().append($options);
     }
