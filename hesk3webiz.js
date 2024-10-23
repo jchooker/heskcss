@@ -53,12 +53,17 @@ $(document).ready(function() { //select category page section
             var options = selectizeControl.options;
 
             var sortedOptions = Object.keys(options)
-                .map(function(key) {
-                    return options[key];
-                })
-                .sort(function(a, b) {
-                    return a.text.localeCompare(b.text);
-                });
+            .map(function(key) {
+                var option = options[key];
+                // Ensure the option has a 'text' property before including it in the sorting
+                return option && option.text ? option : null;
+            })
+            .filter(function(option) {
+                return option !== null;  // Filter out any null or undefined options
+            })
+            .sort(function(a, b) {
+                return a.text.localeCompare(b.text);  // Safely sort by 'text' field
+            });
 
             selectizeControl.clearOptions();
 
