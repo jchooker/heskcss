@@ -53,8 +53,12 @@ $(document).ready(function() { //select category page section
             if (selText.length > 0 && selectizeControl) {
                 
                 $(selText).selectize({ sortField: 'text' })
-                selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
-                selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+                try {
+                    selectizeControl.addOptionGroup('orange-group', {label: 'Orange Group', value: 'orange-group'});
+                    selectizeControl.addOptionGroup('non-orange-group', {label: 'Non-Orange Group', value: 'non-orange-group'});
+                } catch (err) {
+                    console.log($`))))))))))error adding option group to selectize control!!!`);
+                }
 
                 console.log($('.orange-group'));
                 console.log($('.non-orange-group'));
