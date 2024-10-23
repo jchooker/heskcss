@@ -92,15 +92,15 @@ $(document).ready(function() { //select category page section
                         else console.log('orangeGroup NOT FOUND after delay!!!@!!@!@');
                     }, 50);
                 }
-                orangeGroup.each(function(index, optgroup) {
-                    console.log(`^^^^^CHECKING GROUPS 1: ${$(optgroup).attr('label')}`);
-                });
+                // orangeGroup.each(function(index, optgroup) {
+                //     console.log(`^^^^^CHECKING GROUPS 1: ${$(optgroup).attr('label')}`);
+                // });
                 var nonOrangeGroup = selectizeControl.$dropdown_content.find('.non-orange-group');
                 if (nonOrangeGroup.length > 0) console.log('nonOrangeGroup FOUND!!!!');
                 else console.log('DID ******* NOT FIND NOT ORANGE GROUP!');
-                nonOrangeGroup.each(function(index, optgroup) {
-                    console.log(`&&&&CHECKING GROUPS 2: ${$(optgroup).attr('label')}`);
-                });
+                // nonOrangeGroup.each(function(index, optgroup) {
+                //     console.log(`&&&&CHECKING GROUPS 2: ${$(optgroup).attr('label')}`);
+                // });
 
                 alphabeticalSort(orangeGroup);
                 alphabeticalSort(nonOrangeGroup);
