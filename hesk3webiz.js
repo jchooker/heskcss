@@ -130,6 +130,8 @@ $(document).ready(function() { //select category page section
             console.log(`******************OPTIONS $$ NOT FOUND!!!`);
         }
 
+        selectizeControl.refreshOptions(false);
+
         //selectizeControl.settings.render.option = function(data, escape)
 
         // $options.sort(function(a, b) {
