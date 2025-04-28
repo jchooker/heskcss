@@ -18,7 +18,7 @@ $(document).ready(function() { //select category page section
     }
 
     const selText = '#select_category';
-    const newColor = '#FF5F1F';
+    const newColor = '#FF5F1F'; //<--bright orange
     const checkSelectizeAvailability = () => {
         const selectElement = $(selText);
     
@@ -120,7 +120,7 @@ $(document).ready(function() { //select category page section
 
     }
 
-    function alphabeticalSort($colorGroup) {
+    function alphabeticalSort($colorGroup, selectizeControl) {
         var $options = $colorGroup.find('.option');
         if ($options.length > 0) {
             $options.each(function () {
@@ -130,18 +130,20 @@ $(document).ready(function() { //select category page section
             console.log(`******************OPTIONS $$ NOT FOUND!!!`);
         }
 
-        $options.sort(function(a, b) {
-            return $(a).text().localeCompare($(b).text());
-        });
-        try {
-            $options.each(function(index, option) {
-                console.log($`OPTGROUP SORT: ${$(option).val()}`);
-            });
-        } catch (err) {
-            console.log(`PRINTING OPTIONS FROM OPTGROUPS FAILED!: ${err}`);
-        }
+        selectizeControl.settings.render.option = function(data, escape)
 
-        $colorGroup.empty().append($options);
+        // $options.sort(function(a, b) {
+        //     return $(a).text().localeCompare($(b).text());
+        // });
+        // try {
+        //     $options.each(function(index, option) {
+        //         console.log($`OPTGROUP SORT: ${$(option).val()}`);
+        //     });
+        // } catch (err) {
+        //     console.log(`PRINTING OPTIONS FROM OPTGROUPS FAILED!: ${err}`);
+        // }
+
+        // $colorGroup.empty().append($options);
     }
 
     function logOptgroupContents(selectizeControl) {
@@ -192,7 +194,7 @@ $(document).ready(function() { //select category page section
                 if (shouldApplyOrangeText(text)) {//it's rgb but we'll cover 
                                                                                 //that edge
                     if (currColor.toUpperCase() !== newColor) {
-                        optionElement.css('color', newColor);                       //case anyway
+                        //optionElement.css('color', newColor);                       //case anyway
                         console.log(`Adding class 'orange-group' to option with text: ${text}`);
                         optionElement.addClass('orange-group');
                     }
