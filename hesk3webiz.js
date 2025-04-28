@@ -130,7 +130,7 @@ $(document).ready(function() { //select category page section
             console.log(`******************OPTIONS $$ NOT FOUND!!!`);
         }
 
-        selectizeControl.settings.render.option = function(data, escape)
+        //selectizeControl.settings.render.option = function(data, escape)
 
         // $options.sort(function(a, b) {
         //     return $(a).text().localeCompare($(b).text());
