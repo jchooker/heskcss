@@ -120,6 +120,10 @@ $(document).ready(function() { //select category page section
 
     }
 
+    function isOrange(obj) {
+        return obj.classList.contains('orange-group');
+    }
+
     function alphabeticalSort($colorGroup, selectizeControl) {
         var $options = $colorGroup.find('.option');
         if ($options.length > 0) {
@@ -129,6 +133,22 @@ $(document).ready(function() { //select category page section
         } else {
             console.log(`******************OPTIONS $$ NOT FOUND!!!`);
         }
+
+        Object.keys(selectizeControl.options).forEach(function(key) {
+            var optionData = selectizeControl.options[key];
+            var isOrangeOption = isOrange(optionData);
+            
+            //update each option w/ custom sorting field
+            selectizeControl.updateOption(key, {
+                ...optionData,
+                is_orange: isOrangeOption ? 1 : 0
+            });
+        });
+
+        selectize.settings.sortField = [
+            { field: 'is_orange', direction: 'asc'},
+            {field: 'text', direction: 'asc'}
+        ];
 
         selectizeControl.refreshOptions(false);
 
