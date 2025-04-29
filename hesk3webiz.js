@@ -145,7 +145,7 @@ $(document).ready(function() { //select category page section
             });
         });
 
-        selectize.settings.sortField = [
+        selectizeControl.settings.sortField = [
             { field: 'is_orange', direction: 'asc'},
             {field: 'text', direction: 'asc'}
         ];
