@@ -303,7 +303,10 @@ $(document).ready(function() { //select category page section
                 //inferEmailAddress(fromField, toField);
             } 
             else if (lastKeyCheck) lastKeyCheck = false;
-            if (event.key === '-') hyphenated = true;
+            if (event.key === '-') {
+                hyphenated = true;
+                alert("hyphen detected")
+            }
         });
         $(fromField).on('input', function() { //added .on('keydown') to track specific kind of key presses
             inferEmailAddress(fromField, toField, lastKeyCheck, hyphenated);
