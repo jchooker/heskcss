@@ -295,15 +295,18 @@ $(document).ready(function() { //select category page section
         regionFixer();
         var fromField = $('#create_name');
         var toField = $('#email');
+        let hyphenated = false;
         $(fromField).on('keydown', function(event) {
             //inferEmailAddress(fromField, toField);
             if (!(event.key === 'Backspace' || event.key === "Delete")) {
                 lastKeyCheck = true;
                 //inferEmailAddress(fromField, toField);
-            } else if (lastKeyCheck) lastKeyCheck = false;
+            } 
+            else if (lastKeyCheck) lastKeyCheck = false;
+            if (event.key === '-') hyphenated = true;
         });
         $(fromField).on('input', function() { //added .on('keydown') to track specific kind of key presses
-            inferEmailAddress(fromField, toField, lastKeyCheck);
+            inferEmailAddress(fromField, toField, lastKeyCheck, hyphenated);
         });
     }
     //below on 06/12/2024 - autoselect region
@@ -352,15 +355,20 @@ $(document).ready(function() { //select category page section
         });
     }
 
-    function inferEmailAddress(fromField, toField, lastKeyCheck) { //get email from name
+    function inferEmailAddress(fromField, toField, lastKeyCheck, hyphenated) { //get email from name
         if (fromField.length > 0) {
             const fromCheck = /\b[a-zA-Z]+\b/g; //and then the part without a space after it
             var matchArr = (fromField.val()).match(fromCheck);
             if (matchArr) {
-                var toOutput = matchArr.join('.') + "@arkansas.gov";
+                let preOutput = matchArr.join('.') + "@arkansas.gov";
+                let toOutput = '';
                 if (matchArr.length > 1) {
                     if (!gotToLength) gotToLength = true;
                     if (!toastReady) toastReady = true;
+                    if (hyphenated) {
+                        let outputSplice = preOutput.split('.');
+                        toOutput = [...outputSplice.slice(0, -2), `${outputSplice.at(-2)}-${outputSplice.at(-1)}`].join('.');
+                    } else toOutput = preOutput;
                     toField.val(toOutput.toLowerCase());
                     if (toastReady && lastKeyCheck) {
                         showEmailToast();
