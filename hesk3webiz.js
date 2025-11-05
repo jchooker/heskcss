@@ -1,3 +1,5 @@
+//if a new version breaks the site, return to this one:
+//https://cdn.jsdelivr.net/gh/jchooker/heskcss@3d5b5e1cdc979738f8873ee6018eab1e8d7c56e8/hesk3webiz.js
 $(document).ready(function() { //select category page section
     var correctPageCheck = $('h2').filter(function() {
         return $(this).text().trim() === "Select ticket category";
@@ -502,9 +504,9 @@ $(document).ready(function() {
         });
         let phoneElem1 = $(`.ticket__body_block.original-message div span:contains("User's Contact #")`);
         let phoneElem = phoneElem1.next('span');
-        if (phoneElem) alert('phone elem found');
+        if (phoneElem.length > 0) alert('phone elem found');
         else alert('phone elem not found');
-        $(phoneElem).after('<span id="phone-copy-span"><a id="phone-copy-a" href="#">Copy to clipboard</a></span>');
+        $(phoneElem).after('<span id="phone-copy-span">&nbsp;&nbsp;<a id="phone-copy-a" href="#">Copy to clipboard</a></span>');
         $('#phone-copy-a').click(function(e) {
             e.preventDefault();
             let phoneTxt = getPhone(phoneElem);
