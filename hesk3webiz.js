@@ -489,8 +489,69 @@ $(document).ready(function() {
         var searchText = 'mailto:'
         var elem = $(articleSel + ' ul.dropdown-list li.noclose a[href^="' + searchText + '"]');
         var text = elem.text().trim();
-        var toInsert = `<div><span class="custom-field-title">Email: </span><span>${text}</span></div>`;
+        var toInsert = `<div><span class="custom-field-title">Email: </span><span>${text}</span>
+        <span>&nbsp;&nbsp;<a id="email-clipboard-copy">Copy to clipboard</a></span></div>`;
         $(articleSel + ' .block--head').after(toInsert);
+        $('#email-clipboard-copy').click(function(e) {
+            e.preventDefault();
+            if (navigator.clipboard && window.isSecureContext) {
+                copyToClipboard1(text);
+            } else {
+                copyToClipboard2(text);
+            }
+        });
+        let phoneElem = $(`.ticket__body_block.original-message div span:contains("User's Contact #") span`);
+        $(phoneElem).after('<span id="phone-copy-span"><a id="phone-copy-a">Copy to clipboard</a></span>');
+        $('#phone-copy-a').click(function(e) {
+            e.preventDefault();
+            let phoneTxt = getPhone(phoneElem);
+            if (navigator.clipboard && window.isSecureContext) {
+                copyToClipboard1(phoneTxt);
+            } else {
+                copyToClipboard2(phoneTxt);
+            }
+        })
+    }
+
+    function getPhone($elem) {
+        if (checkContentExists($elem)) return $elem.text().trim();
+        else alert('Nothing to copy!');
+    }
+
+    //checks whether span element (field value) has 0 chars or >=1
+    function checkContentExists($elem) {
+        return !!$elem.text().trim().length;
+    }
+
+    //first copy method
+    function copyToClipboard1(text) {
+        navigator.clipboard.writeText(text);
+    }
+
+    //second method
+    function copyToClipboard2(text) {
+        //textarea as a workaround to copy to clipboard
+        const $temp = $('<textarea>')
+            .val(text)
+            .attr('readonly', '') //prevent mobile keyboard
+            .css({
+                position: 'absolute',
+                left: '-9999px'
+            })
+            .appendTo('body');
+        //select and copy
+        $temp[0].select();
+        $temp[0].setSelectionRange(0, 99999); //for mobile devices
+
+        //several deprecated functions follow
+        const execCommSupported = document.queryCommandSupported(document.execCommand('copy'));
+        if (execCommSupported) {
+            const success = document.execCommand('copy');
+            $temp.remove();
+        } else {
+            alert("Copy to clipboard operation failed! The function cannot be used in this environment.");
+        }
+
     }
 });
 
