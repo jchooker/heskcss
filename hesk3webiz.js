@@ -490,7 +490,7 @@ $(document).ready(function() {
         var elem = $(articleSel + ' ul.dropdown-list li.noclose a[href^="' + searchText + '"]');
         var text = elem.text().trim();
         var toInsert = `<div><span class="custom-field-title">Email: </span><span>${text}</span>
-        <span>&nbsp;&nbsp;<a id="email-clipboard-copy">Copy to clipboard</a></span></div>`;
+        <span>&nbsp;&nbsp;<a id="email-clipboard-copy" href="#">Copy to clipboard</a></span></div>`;
         $(articleSel + ' .block--head').after(toInsert);
         $('#email-clipboard-copy').click(function(e) {
             e.preventDefault();
@@ -500,8 +500,11 @@ $(document).ready(function() {
                 copyToClipboard2(text);
             }
         });
-        let phoneElem = $(`.ticket__body_block.original-message div span:contains("User's Contact #") span`);
-        $(phoneElem).after('<span id="phone-copy-span"><a id="phone-copy-a">Copy to clipboard</a></span>');
+        let phoneElem1 = $(`.ticket__body_block.original-message div span:contains("User's Contact #")`);
+        let phoneElem = phoneElem1.next('span');
+        if (phoneElem) alert('phone elem found');
+        else alert('phone elem not found');
+        $(phoneElem).after('<span id="phone-copy-span"><a id="phone-copy-a" href="#">Copy to clipboard</a></span>');
         $('#phone-copy-a').click(function(e) {
             e.preventDefault();
             let phoneTxt = getPhone(phoneElem);
